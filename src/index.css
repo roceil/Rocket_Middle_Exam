@@ -8,6 +8,7 @@
       "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
       "Helvetica Neue", sans-serif;
   }
+
   html,
   body {
     width: 100%;
@@ -22,9 +23,8 @@
   .openSans {
     font-family: "Open Sans";
   }
+
   .gradient {
-    background: transparent
-      linear-gradient(180deg, #ffffff00 0%, #ffffff 100%) 0% 0% no-repeat
-      padding-box;
+    @apply bg-gradient-to-r from-purple-500 to-pink-500
   }
 }
