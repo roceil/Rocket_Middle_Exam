@@ -4,6 +4,8 @@ import AC from "../images/amenities/icon_amenities_Air-Conditioner.svg";
 import OK from "../images/amenities/icons-ok.svg";
 
 export function Rooms() {
+  const iconAry = [ 1,1,1,1,1,1,1,1,1,1,1,1]
+
   return (
     <div className="flex h-screen">
       {/* Nav */}
@@ -60,80 +62,22 @@ export function Rooms() {
           </li>
         </ul>
         {/* icons */}
-        <ul className="">
+        <ul className="flex flex-wrap gap-x-10 gap-y-[26px] mb-7">
           {/* 01 */}
-          <li className="relative inline-block">
-            <img src={AC} alt="" />
-            <img
-              src={OK}
-              alt=""
-              className="absolute top-0 -right-1 translate-x-[100%]"
-            />
-          </li>
-          {/* 01 */}
-          <li className="relative inline-block">
-            <img src={AC} alt="" />
-            <img
-              src={OK}
-              alt=""
-              className="absolute top-0 -right-1 translate-x-[100%]"
-            />
-          </li>
-          {/* 01 */}
-          <li className="relative inline-block">
-            <img src={AC} alt="" />
-            <img
-              src={OK}
-              alt=""
-              className="absolute top-0 -right-1 translate-x-[100%]"
-            />
-          </li>
-          {/* 01 */}
-          <li className="relative inline-block">
-            <img src={AC} alt="" />
-            <img
-              src={OK}
-              alt=""
-              className="absolute top-0 -right-1 translate-x-[100%]"
-            />
-          </li>
-          {/* 01 */}
-          <li className="relative inline-block">
-            <img src={AC} alt="" />
-            <img
-              src={OK}
-              alt=""
-              className="absolute top-0 -right-1 translate-x-[100%]"
-            />
-          </li>
-          {/* 01 */}
-          <li className="relative inline-block">
-            <img src={AC} alt="" />
-            <img
-              src={OK}
-              alt=""
-              className="absolute top-0 -right-1 translate-x-[100%]"
-            />
-          </li>
-          {/* 01 */}
-          <li className="relative inline-block">
-            <img src={AC} alt="" />
-            <img
-              src={OK}
-              alt=""
-              className="absolute top-0 -right-1 translate-x-[100%]"
-            />
-          </li>
-          {/* 01 */}
-          <li className="relative inline-block">
-            <img src={AC} alt="" />
-            <img
-              src={OK}
-              alt=""
-              className="absolute top-0 -right-1 translate-x-[100%]"
-            />
-          </li>
+          {iconAry.map((item,i)=>{
+            return (
+              <li key={i} className="flex">
+                <img src={AC} alt="" />
+                <img
+                  src={OK}
+                  alt=""
+                  className="relative -top-[13px] -right-1 "
+                />
+            </li>
+            )
+          })}          
         </ul>
+        <p className="text-primary text-sm font-medium mb-2">空房狀態查詢</p>
       </div>
     </div>
   );
