@@ -32,7 +32,7 @@ export function Rooms() {
 
             <button
               type="button"
-              className="text-xl text-white bg-primary py-[8.5px] w-[252px] block"
+              className="text-xl text-white bg-primary py-[8.5px] w-[252px] block hover:opacity-50"
             >
               Booking Now
             </button>
