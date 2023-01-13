@@ -7,11 +7,10 @@ import RoomList from "../container/RoomList"
 export function Home() {
   return (
     <div className="HomePage flex items-center h-screen">
-      {/* Swiper */}
-      {/* <div className="bg-[url('./images/house/photo-1507149833265-60c372daea22.jpeg')] bg-no-repeat h-screen bg-cover absolute w-screen -z-10"></div> */}
+      {/* SwipeCarousel */}
       <HomeCarousel />
       {/* Content */}
-      <div className="flex justify-center items-center z-10">
+      <div className="w-full flex justify-center items-center z-10">
         <div className="container flex justify-between">
           {/* 左邊文字區塊 */}
           <div className="flex flex-col justify-between flex-shrink-0">
@@ -26,51 +25,7 @@ export function Home() {
             </div>
           </div>
           {/* 右邊房型區塊 */}
-          {/* <ul className="flex flex-wrap justify-end">
-            <li>
-              <img
-                src={singleRoom}
-                alt="singleRoom"
-                className="w-[275px] h-[275px]"
-              />
-            </li>
-            <li>
-              <img
-                src={singleRoom}
-                alt="singleRoom"
-                className="w-[275px] h-[275px]"
-              />
-            </li>
-            <li>
-              <img
-                src={singleRoom}
-                alt="singleRoom"
-                className="w-[275px] h-[275px]"
-              />
-            </li>
-            <li>
-              <img
-                src={singleRoom}
-                alt="singleRoom"
-                className="w-[275px] h-[275px]"
-              />
-            </li>
-            <li>
-              <img
-                src={singleRoom}
-                alt="singleRoom"
-                className="w-[275px] h-[275px]"
-              />
-            </li>
-            <li>
-              <img
-                src={singleRoom}
-                alt="singleRoom"
-                className="w-[275px] h-[275px]"
-              />
-            </li>
-          </ul> */}
-          <RoomList/>
+          <RoomList />
         </div>
       </div>
     </div>

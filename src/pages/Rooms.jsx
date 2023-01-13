@@ -17,7 +17,7 @@ export function Rooms() {
 
   const [bgStatus, setBgStatus] = useState(false);
 
-  let showBg = bgStatus === true ? <Dialog setBgStatus={setBgStatus}/> : "";
+  let showBg = bgStatus === true ? <Dialog setBgStatus={setBgStatus} /> : "";
   const BgSwitch = () => {
     switch (bgStatus) {
       case false:
@@ -31,7 +31,7 @@ export function Rooms() {
     <div className="flex h-screen">
       {showBg}
       {/* Nav */}
-      <nav className="w-[573px]">
+      <nav className="w-[42%]">
         {/* 輪播圖 */}
         <RoomCarousel />
 
@@ -67,7 +67,7 @@ export function Rooms() {
 
       {/* RoomInfo */}
       <div className="mt-[133px] w-[635px] ml-[30px] text-primary">
-        <RoomDetail/>
+        <RoomDetail />
         {/* icons */}
         <ul className="flex flex-wrap gap-x-10 gap-y-[26px] mb-7">
           {/* 01 */}

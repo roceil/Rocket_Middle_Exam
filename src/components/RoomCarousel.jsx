@@ -20,7 +20,7 @@ const RoomCarousel = () => {
   };
 
   return (
-    <div className="w-[573px] h-full absolute">
+    <div className="w-[42%] h-full absolute">
       <Slide {...properties} indicators={true}>
         <div className="each-slide-effect ">
           <div
