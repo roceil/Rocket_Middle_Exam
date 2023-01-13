@@ -10,16 +10,10 @@ function App() {
   const imgAry = [singleRoom];
   console.log(imgAry);
   return (
-<<<<<<< HEAD
     <>
       <Home></Home>
-      <Rooms></Rooms>
+      {/* <Rooms></Rooms> */}
     </>
-=======
-    <Home></Home>
-
-    // <Rooms></Rooms>
->>>>>>> main
   );
 }
 

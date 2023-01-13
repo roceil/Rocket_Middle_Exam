@@ -16,14 +16,8 @@ export function Rooms() {
       <nav className="w-[573px]">
         {/* 輪播圖 */}
         <div className="relative">
-<<<<<<< HEAD
-          <div className="w-full h-screen">
-            <img src={singleRoom} alt="singleRoom" />
-          </div>
-=======
           {/* <img src={singleRoom} alt="singleRoom" className="gradient" /> */}
          <RoomCarousel />
->>>>>>> main
           {/* 返回首頁按鈕 */}
           <button
             type="button"
