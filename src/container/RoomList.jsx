@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import  RoomItems  from '../component/RoomItems';
 import axios from 'axios'
 
 function RoomList() {
@@ -9,9 +8,7 @@ function RoomList() {
 
   const [data,setData]=useState([]);
 
-  console.log(1,'渲染中');
   useEffect(()=>{
-    console.log('2,渲染完後得effect')
     const getRoomImg = async () =>{
       const res = await axios.get(`${url}`,authorization)
       console.log(res);

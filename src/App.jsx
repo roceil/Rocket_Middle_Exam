@@ -1,5 +1,4 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
 import { Home } from "./pages/Home";
 import { Rooms } from "./pages/Rooms"
 import singleRoom from "./images/room1/singleRoom.jpeg";
@@ -11,9 +10,9 @@ function App() {
   console.log(imgAry);
   return (
     <>
-      {/* <Home></Home>
-      <Rooms></Rooms> */}
-      <Dialog/>
+      <Home></Home>
+      <Rooms></Rooms>
+      {/* <Dialog/> */}
     </>
   );
 }
