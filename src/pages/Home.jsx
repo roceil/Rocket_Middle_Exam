@@ -19,7 +19,7 @@ export function Home() {
             <div className="text-xs text-white">
               <h3 className="mb-4">好室旅店。HOUSE HOTEL</h3>
               <ul className="flex flex-col space-y-[6px] font-light">
-                <li>花蓮縣花蓮市國聯一路1號</li>
+                <li>花蓮縣花蓮市國聯一路1000號</li>
                 <li className="openSans">03-8321155</li>
                 <li className="openSans">HOUSE@HOTEL.COM</li>
               </ul>
