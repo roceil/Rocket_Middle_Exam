@@ -1,5 +1,7 @@
 import logo from "../images/logo.svg";
 import singleRoom from "../images/room1/singleRoom.jpeg";
+// import { RoomList } from "../container/RoomList";
+import RoomList from "../container/RoomList"
 
 export function Home() {
   return (
@@ -11,7 +13,7 @@ export function Home() {
       <div className=" flex justify-center items-center h-screen ">
         <div className="container flex justify-between">
           {/* 左邊文字區塊 */}
-          <div className="flex flex-col justify-between">
+          <div className="flex flex-col justify-between flex-shrink-0">
             <img src={logo} alt="logo" />
             <div className="text-xs text-white">
               <h3 className="mb-4">好室旅店。HOUSE HOTEL</h3>
@@ -23,7 +25,7 @@ export function Home() {
             </div>
           </div>
           {/* 右邊房型區塊 */}
-          <ul className="flex flex-wrap justify-end">
+          {/* <ul className="flex flex-wrap justify-end">
             <li>
               <img
                 src={singleRoom}
@@ -60,9 +62,10 @@ export function Home() {
                 alt="singleRoom"
                 className="w-[275px] h-[275px]" />
             </li>
-          </ul>
+          </ul> */}
+          <RoomList/>
         </div>
       </div>
-    </div> // <Rooms></Rooms>
+    </div>
   );
 }

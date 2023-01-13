@@ -8,6 +8,7 @@
       "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
       "Helvetica Neue", sans-serif;
   }
+
   html,
   body {
     width: 100%;
@@ -16,15 +17,45 @@
     padding: 0;
     /* @apply bg-black */
   }
+  #root {
+    @apply w-full h-full;
+  }
+}
+
+@layer components {
+  .dialogTitle{
+    @apply inline-block bg-white relative z-10 pr-[6.5px] text-primary font-bold
+  }
+  .dialogTitle_div{
+    @apply  absolute w-[533px] h-[1px] bg-light-primary opacity-20 top-1/2 left-0 translate-y-[50%]
+  }
 }
 
 @layer utilities {
   .openSans {
     font-family: "Open Sans";
   }
+
   .gradient {
-    background: transparent
-      linear-gradient(180deg, #ffffff00 0%, #ffffff 100%) 0% 0% no-repeat
-      padding-box;
+    background: transparent linear-gradient(180deg, #ffffff00 0%, #ffffff 100%)
+      0% 0% no-repeat padding-box;
+  }
+  .blur {
+    opacity: 0.5;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+  }
+  .blur {
+    opacity: 0.5;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: hsla(0,0%,85.5%,.75);
+  }
+  .blur {
+    opacity: 0.5;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: #FFFFFF 0% 0% no-repeat padding-box;
   }
 }

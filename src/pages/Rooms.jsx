@@ -4,7 +4,10 @@ import AC from "../images/amenities/icon_amenities_Air-Conditioner.svg";
 import OK from "../images/amenities/icons-ok.svg";
 
 export function Rooms() {
-  const iconAry = [ 1,1,1,1,1,1,1,1,1,1,1,1]
+  const iconAry = [];
+  for (let i = 0; i < 8; i++) {
+    iconAry.push('')
+  }
 
   return (
     <div className="flex h-screen">
@@ -12,7 +15,9 @@ export function Rooms() {
       <nav className="w-[573px]">
         {/* 輪播圖 */}
         <div className="relative">
-          <img src={singleRoom} alt="singleRoom" className="gradient" />
+          <div className="w-full h-screen">
+            <img src={singleRoom} alt="singleRoom" />
+          </div>
           {/* 返回首頁按鈕 */}
           <button
             type="button"
@@ -64,7 +69,7 @@ export function Rooms() {
         {/* icons */}
         <ul className="flex flex-wrap gap-x-10 gap-y-[26px] mb-7">
           {/* 01 */}
-          {iconAry.map((item,i)=>{
+          {iconAry.map((item, i) => {
             return (
               <li key={i} className="flex">
                 <img src={AC} alt="" />
@@ -73,9 +78,9 @@ export function Rooms() {
                   alt=""
                   className="relative -top-[13px] -right-1 "
                 />
-            </li>
+              </li>
             )
-          })}          
+          })}
         </ul>
         <p className="text-primary text-sm font-medium mb-2">空房狀態查詢</p>
       </div>
