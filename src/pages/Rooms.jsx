@@ -1,16 +1,33 @@
+import { useState } from "react";
+
 import singleRoom from "../images/room1/singleRoom.jpeg";
 import backHome from "../images/back home.png";
 import AC from "../images/amenities/icon_amenities_Air-Conditioner.svg";
 import OK from "../images/amenities/icons-ok.svg";
+import DialogBgBlur from "../component/DialogBgBlur";
+import Dialog from "../container/Dialog"
 
 export function Rooms() {
   const iconAry = [];
   for (let i = 0; i < 8; i++) {
-    iconAry.push('')
+    iconAry.push("");
   }
 
+  const [bgStatus, setBgStatus] = useState(false);
+
+  let showBg = bgStatus === true ? <Dialog setBgStatus={setBgStatus}/> : "";
+  const BgSwitch = () => {
+    switch (bgStatus) {
+      case false:
+        setBgStatus(true);
+        break;
+      default:
+        break;
+    }
+  };
   return (
     <div className="flex h-screen">
+      {showBg}
       {/* Nav */}
       <nav className="w-[573px]">
         {/* 輪播圖 */}
@@ -37,6 +54,7 @@ export function Rooms() {
 
             <button
               type="button"
+              onClick={BgSwitch}
               className="text-xl text-white bg-primary py-[8.5px] w-[252px] block hover:opacity-50"
             >
               Booking Now
@@ -75,7 +93,7 @@ export function Rooms() {
                   className="relative -top-[13px] -right-1 "
                 />
               </li>
-            )
+            );
           })}
         </ul>
         <p className="text-primary text-sm font-medium mb-2">空房狀態查詢</p>
