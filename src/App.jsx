@@ -11,9 +11,9 @@ function App() {
   console.log(imgAry);
   return (
     <>
-      {/* <Home></Home>
-      <Rooms></Rooms> */}
-      <Dialog/>
+      <Home></Home>
+      <Rooms></Rooms>
+      {/* <Dialog/> */}
     </>
   );
 }

@@ -1,36 +1,38 @@
 import { useState, useEffect } from "react";
-import  RoomItems  from '../component/RoomItems';
+import RoomItems from '../component/RoomItems';
 import axios from 'axios'
 
 function RoomList() {
   const url = 'https://challenge.thef2e.com/api/thef2e2019/stage6/rooms';
   const token = 'Bearer IAlFGuHujADexllpJHWL1MenPYbizgbL00yxoV8wLs9zfZxS4hgs0wVo6E6b';
-  const authorization = {'headers': {'Authorization': token}};
+  const authorization = { 'headers': { 'Authorization': token } };
 
-  const [data,setData]=useState([]);
+  const [data, setData] = useState([]);
 
-  console.log(1,'渲染中');
-  useEffect(()=>{
+  console.log(1, '渲染中');
+  useEffect(() => {
     console.log('2,渲染完後得effect')
-    const getRoomImg = async () =>{
-      const res = await axios.get(`${url}`,authorization)
+    const getRoomImg = async () => {
+      const res = await axios.get(`${url}`, authorization)
       console.log(res);
       setData(res.data.items);
     }
     getRoomImg();
-  },[])
+  }, [])
 
   return (
     <>
-      <ul className="flex flex-wrap justify-end">
+      <ul className="flex flex-wrap justify-end w-[825px]">
         {
-          data.map((item)=>{
-            return(
-              <li key={item.id}>
+          data.map((item) => {
+            return (
+              <li key={item.id} className="w-[33%] relative group">
+                <div className="group-hover:block hidden w-full h-full absolute top-0 bg-[#38470B] opacity-60 items-center"></div>
+                <h2 className="hidden group-hover:block w-full openSans text-white text-lg text-center absolute top-[50%] translate-y-[-50%]">{item.name}</h2>
                 <img
                   src={item.imageUrl}
                   alt="singleRoom"
-                  className="w-[275px] h-[275px]" />
+                  className="w-full h-[275px]" />
               </li>
             )
           })
@@ -38,6 +40,6 @@ function RoomList() {
       </ul>
     </>
   )
-  }
-  
-  export default RoomList;
+}
+
+export default RoomList;
