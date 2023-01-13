@@ -41,20 +41,10 @@
       0% 0% no-repeat padding-box;
   }
   .blur {
+    position: fixed;
+    z-index: 10;
     opacity: 0.5;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-  }
-  .blur {
-    opacity: 0.5;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    background: hsla(0,0%,85.5%,.75);
-  }
-  .blur {
-    opacity: 0.5;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(80px);
     -webkit-backdrop-filter: blur(20px);
     background: #FFFFFF 0% 0% no-repeat padding-box;
   }

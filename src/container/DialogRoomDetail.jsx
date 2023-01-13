@@ -5,14 +5,21 @@ import { DialogRoomIcons } from "../component/DialogRoomIcons";
 import { DialogRoomBookingInfo } from "./DialogRoomBookingInfo";
 import { DialogBookingStep } from "../component/DialogBookingStep";
 
-export function DialogRoomDetail() {
+export function DialogRoomDetail({ setBgStatus }) {
+  const closeBg = () => {
+    setBgStatus(false);
+  };
   return (
     <div className="bg-white w-[59.91%] pt-[50px] pb-[26px] pl-[30px] pr-[38px]">
       {/* 關閉按鈕 */}
-      <button type="button" className="w-full flex justify-end">
+      <button
+        onClick={closeBg}
+        type="button"
+        className="w-full flex justify-end"
+      >
         <img src={close} alt="" />
       </button>
-      
+
       {/* 標題區塊 */}
       <DialogRoomTitle />
 
