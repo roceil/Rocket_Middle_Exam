@@ -2,6 +2,7 @@ import singleRoom from "../images/room1/singleRoom.jpeg";
 import backHome from "../images/back home.png";
 import AC from "../images/amenities/icon_amenities_Air-Conditioner.svg";
 import OK from "../images/amenities/icons-ok.svg";
+import RoomCarousel from "../components/RoomCarousel";
 
 export function Rooms() {
   return (
@@ -10,7 +11,8 @@ export function Rooms() {
       <nav className="w-[573px]">
         {/* 輪播圖 */}
         <div className="relative">
-          <img src={singleRoom} alt="singleRoom" className="gradient" />
+          {/* <img src={singleRoom} alt="singleRoom" className="gradient" /> */}
+         <RoomCarousel />
           {/* 返回首頁按鈕 */}
           <button
             type="button"
