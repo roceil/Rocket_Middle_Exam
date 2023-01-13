@@ -20,6 +20,7 @@
   #root {
     @apply w-full h-full;
   }
+<<<<<<< Updated upstream
 }
 
 @layer components {
@@ -29,6 +30,8 @@
   .dialogTitle_div{
     @apply  absolute w-[533px] h-[1px] bg-light-primary opacity-20 top-1/2 left-0 translate-y-[50%]
   }
+=======
+>>>>>>> Stashed changes
 }
 
 @layer utilities {
@@ -39,6 +42,15 @@
   .gradient {
     background: transparent linear-gradient(180deg, #ffffff00 0%, #ffffff 100%)
       0% 0% no-repeat padding-box;
+<<<<<<< Updated upstream
+=======
+  }
+  .blur {
+    opacity: 0.5;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+>>>>>>> Stashed changes
   }
   .blur {
     opacity: 0.5;
