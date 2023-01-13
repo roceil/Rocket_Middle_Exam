@@ -15,14 +15,6 @@ function App() {
       <Rooms></Rooms> */}
       <Dialog/>
     </>
-
-
-<<<<<<< Updated upstream
-=======
-    // <Rooms></Rooms>
-
-    <Dialog/>
->>>>>>> Stashed changes
   );
 }
 
