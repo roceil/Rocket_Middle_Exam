@@ -13,6 +13,10 @@ function App() {
       <Home></Home>
       <Rooms></Rooms>
     </>
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
   );
 }
 
