@@ -9,9 +9,10 @@ function App() {
   const imgAry = [singleRoom];
   console.log(imgAry);
   return (
-    // <Home></Home>
-
-    <Rooms></Rooms>
+    <>
+      <Home></Home>
+      <Rooms></Rooms>
+    </>
   );
 }
 

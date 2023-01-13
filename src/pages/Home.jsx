@@ -11,7 +11,7 @@ export function Home() {
       <div className=" flex justify-center items-center h-screen ">
         <div className="container flex justify-between">
           {/* 左邊文字區塊 */}
-          <div className="flex flex-col justify-between">
+          <div className="flex flex-col justify-between flex-shrink-0">
             <img src={logo} alt="logo" />
             <div className="text-xs text-white">
               <h3 className="mb-4">好室旅店。HOUSE HOTEL</h3>
@@ -63,6 +63,6 @@ export function Home() {
           </ul>
         </div>
       </div>
-    </div> // <Rooms></Rooms>
+    </div>
   );
 }
