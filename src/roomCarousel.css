@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .react-slideshow-container + ul.indicators {
+    position: absolute;
+    bottom: 46px;
+    left: 260px;
+  }
+
+  .react-slideshow-container
+    + ul.indicators
+    .each-slideshow-indicator.active:before {
+    background: #868f6c;
+  }
+}

@@ -12,7 +12,7 @@
   html,
   body {
     width: 100%;
-    height: 100vh;
+    height: 10vh;
     margin: 0;
     padding: 0;
     /* @apply bg-black */
@@ -25,10 +25,10 @@
   }
 
   .gradient {
-    @apply bg-gradient-to-r from-purple-500 to-pink-500
+    @apply bg-gradient-to-r from-purple-500 to-pink-500;
   }
 
-  // HomeCarousel
+
   .each-slide-effect > div {
     display: flex;
     align-items: center;
@@ -44,27 +44,26 @@
     text-align: center;
   }
 
-  .indicator {
-    cursor: pointer;
-    padding: 12px;
-    text-align: center;
-    border: 1px #ffffff solid;
-    margin: 0;
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
+  .react-slideshow-container + ul.indicators li {
+    width: 12px;
+    hoeight: 12px;
+    padding: 11px;
   }
 
-  .indicator.active {
-    color: #fff;
-    background: #ffffff;
+  .react-slideshow-container + ul.indicators .each-slideshow-indicator:before {
+    width: 12px;
+    height: 12px;
+    border: 1px solid #ffffff;
+    background: transparent;
   }
+
+
+
+  .react-slideshow-container + ul.indicators .each-slideshow-indicator:hover,
+  .react-slideshow-container + ul.indicators .each-slideshow-indicator.active,
+  .react-slideshow-container + ul.indicators .each-slideshow-indicator {
+    opacity: 1;
+  }
+
+
 }
-
-/* .react-slideshow-container + ul.indicators {
-  position: absolute;
-  bottom: 46px;
-  left:200px;
-  z-index: 10;
-} */

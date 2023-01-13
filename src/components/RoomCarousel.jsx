@@ -4,6 +4,8 @@ import "react-slideshow-image/dist/styles.css";
 import singleRoom from "../images/room1/singleRoom.jpeg";
 import singleRoom2 from "../images/room1/singleRoom2.jpeg";
 import singleRoom3 from "../images/room1/singleRoom3.jpeg";
+import '../roomCarousel.css'
+
 
 const RoomCarousel = () => {
   const images = [singleRoom, singleRoom2, singleRoom3];
@@ -17,35 +19,51 @@ const RoomCarousel = () => {
     nextArrow: <button style={{ ...buttonStyle }}></button>,
   };
 
-  // const indicators = () => <div className="indicator" style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}}></div>;
-
   return (
-    <div className="w-full h-full -z-10 absolute">
+    <div className="w-[573px] h-full absolute">
       <Slide {...properties} indicators={true}>
-        {images.map((item, index) => (
-          <div key={index} className="each-slide-effect h-screen">
-            <div
-              key={index}
-              style={{
-                width: "100%",
-                height: "100vh",
-                backgroundImage: "url(" + item + ")",
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-                backgroundBlendMode :"multiply",
-                backgroundColor:"#000000",
-                opacity:0.6,
-              }}
-            >
-              {/* <img
-                style={{ objectFit: "cover", width: "100%", height: "100%" }}
-                alt="Slide Image"
-                src={item}
-              /> */}
-            </div>
-          </div>
-        ))}
+        <div className="each-slide-effect ">
+          <div
+            style={{
+              width: "100%",
+              height: "100vh",
+              background: "transparent linear-gradient(180deg, #FFFFFF00 0%, #FFFFFF 100%) 0% 0% no-repeat padding-box",
+              backgroundImage: `url(${images[0]})`,
+              backgroundPosition: "center center",
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+              backgroundBlendMode: "multiply",
+            }}
+          ></div>
+        </div>
+        <div className="each-slide-effect">
+          <div
+            style={{
+              width: "100%",
+              height: "100vh",
+              background: "transparent linear-gradient(180deg, #FFFFFF00 0%, #FFFFFF 100%) 0% 0% no-repeat padding-box",
+              backgroundImage: `url(${images[1]})`,
+              backgroundPosition: "center center",
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+              backgroundBlendMode: "multiply",
+            }}
+          ></div>
+        </div>
+        <div className="each-slide-effect">
+          <div
+            style={{
+              width: "100%",
+              height: "100vh",
+              background: "transparent linear-gradient(180deg, #FFFFFF00 0%, #FFFFFF 100%) 0% 0% no-repeat padding-box",
+              backgroundImage: `url(${images[2]})`,
+              backgroundPosition: "center center",
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+              backgroundBlendMode: "multiply",
+            }}
+          ></div>
+        </div>
       </Slide>
     </div>
   );

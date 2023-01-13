@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <Home></Home>
-      {/* <Rooms></Rooms> */}
+      <Rooms></Rooms>
     </>
   );
 }

@@ -2,16 +2,14 @@ import logo from "../images/logo.svg";
 import singleRoom from "../images/room1/singleRoom.jpeg";
 import HomeCarousel from "../components/HomeCarousel";
 
-
 export function Home() {
   return (
-    <div className="HomePage">
+    <div className="HomePage flex items-center h-screen">
       {/* Swiper */}
       {/* <div className="bg-[url('./images/house/photo-1507149833265-60c372daea22.jpeg')] bg-no-repeat h-screen bg-cover absolute w-screen -z-10"></div> */}
       <HomeCarousel />
-
       {/* Content */}
-      <div className=" flex justify-center items-center h-screen ">
+      <div className="flex justify-center items-center z-10">
         <div className="container flex justify-between">
           {/* 左邊文字區塊 */}
           <div className="flex flex-col justify-between flex-shrink-0">
@@ -19,7 +17,7 @@ export function Home() {
             <div className="text-xs text-white">
               <h3 className="mb-4">好室旅店。HOUSE HOTEL</h3>
               <ul className="flex flex-col space-y-[6px] font-light">
-                <li>花蓮縣花蓮市國聯一路1000號</li>
+                <li>花蓮縣花蓮市國聯一路1號</li>
                 <li className="openSans">03-8321155</li>
                 <li className="openSans">HOUSE@HOTEL.COM</li>
               </ul>

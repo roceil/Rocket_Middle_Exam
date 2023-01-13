@@ -7,7 +7,7 @@ import RoomCarousel from "../components/RoomCarousel";
 export function Rooms() {
   const iconAry = [];
   for (let i = 0; i < 8; i++) {
-    iconAry.push('')
+    iconAry.push("");
   }
 
   return (
@@ -15,9 +15,10 @@ export function Rooms() {
       {/* Nav */}
       <nav className="w-[573px]">
         {/* 輪播圖 */}
-        <div className="relative">
+        <RoomCarousel />
+
+        <div className="">
           {/* <img src={singleRoom} alt="singleRoom" className="gradient" /> */}
-         <RoomCarousel />
           {/* 返回首頁按鈕 */}
           <button
             type="button"
@@ -57,14 +58,12 @@ export function Rooms() {
           退房時間：10：00
         </p>
         <ul className="text-primary text-sm font-light mb-12">
+          <li>・單人間僅供一位客人使用。</li>
+          <li>・臥室配有單人床和私人浴室。</li>
           <li>
-            ・單人間僅供一位客人使用。
-            <li>・臥室配有單人床和私人浴室。</li>
-            <li>
-              ・您需要的一切為您準備：床單和毯子，毛巾，肥皂和洗髮水，吹風機。
-            </li>
-            <li>・房間裡有AC，當然還有WiFi。</li>
+            ・您需要的一切為您準備：床單和毯子，毛巾，肥皂和洗髮水，吹風機。
           </li>
+          <li>・房間裡有AC，當然還有WiFi。</li>
         </ul>
         {/* icons */}
         <ul className="flex flex-wrap gap-x-10 gap-y-[26px] mb-7">
@@ -79,7 +78,7 @@ export function Rooms() {
                   className="relative -top-[13px] -right-1 "
                 />
               </li>
-            )
+            );
           })}
         </ul>
         <p className="text-primary text-sm font-medium mb-2">空房狀態查詢</p>
