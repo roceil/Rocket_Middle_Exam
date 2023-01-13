@@ -15,11 +15,8 @@ module.exports = {
     },
     extend: {
       colors:{
-        'primary':'#38470B'
-      },
-      backgroundImage: {
-        'singleRooms': "url('/src/images/room1/singleRoom.jpeg)",
-        'footer-texture': "url('/img/footer-texture.png')",
+        'primary':'#38470B',
+        "light-primary":"#949C7C"
       },
     },
   },
