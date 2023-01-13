@@ -17,6 +17,9 @@
     padding: 0;
     /* @apply bg-black */
   }
+  #root {
+    @apply w-full h-full;
+  }
 }
 
 @layer utilities {
@@ -25,6 +28,25 @@
   }
 
   .gradient {
+<<<<<<< Updated upstream
     @apply bg-gradient-to-r from-purple-500 to-pink-500
+    background: transparent linear-gradient(180deg, #ffffff00 0%, #ffffff 100%)
+      0% 0% no-repeat padding-box;
+=======
+    background: transparent linear-gradient(180deg, #ffffff00 0%, #ffffff 100%)
+      0% 0% no-repeat padding-box;
+  }
+  .blur {
+    opacity: 0.5;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+>>>>>>> Stashed changes
+  }
+  .blur {
+    opacity: 0.5;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: #FFFFFF 0% 0% no-repeat padding-box;
   }
 }
