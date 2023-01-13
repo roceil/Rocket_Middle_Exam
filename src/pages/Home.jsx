@@ -1,5 +1,7 @@
 import logo from "../images/logo.svg";
 import singleRoom from "../images/room1/singleRoom.jpeg";
+// import { RoomList } from "../container/RoomList";
+import RoomList from "../container/RoomList"
 
 export function Home() {
   return (
@@ -23,7 +25,7 @@ export function Home() {
             </div>
           </div>
           {/* 右邊房型區塊 */}
-          <ul className="flex flex-wrap justify-end">
+          {/* <ul className="flex flex-wrap justify-end">
             <li>
               <img
                 src={singleRoom}
@@ -60,7 +62,8 @@ export function Home() {
                 alt="singleRoom"
                 className="w-[275px] h-[275px]" />
             </li>
-          </ul>
+          </ul> */}
+          <RoomList/>
         </div>
       </div>
     </div>
