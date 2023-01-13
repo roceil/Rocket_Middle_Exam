@@ -1,11 +1,14 @@
 import logo from "../images/logo.svg";
 import singleRoom from "../images/room1/singleRoom.jpeg";
+import HomeCarousel from "../components/HomeCarousel";
+
 
 export function Home() {
   return (
     <div className="HomePage">
       {/* Swiper */}
-      <div className="bg-[url('./images/house/photo-1507149833265-60c372daea22.jpeg')] bg-no-repeat h-screen bg-cover absolute w-screen -z-10"></div>
+      {/* <div className="bg-[url('./images/house/photo-1507149833265-60c372daea22.jpeg')] bg-no-repeat h-screen bg-cover absolute w-screen -z-10"></div> */}
+      <HomeCarousel />
 
       {/* Content */}
       <div className=" flex justify-center items-center h-screen ">
@@ -28,37 +31,43 @@ export function Home() {
               <img
                 src={singleRoom}
                 alt="singleRoom"
-                className="w-[275px] h-[275px]" />
+                className="w-[275px] h-[275px]"
+              />
             </li>
             <li>
               <img
                 src={singleRoom}
                 alt="singleRoom"
-                className="w-[275px] h-[275px]" />
+                className="w-[275px] h-[275px]"
+              />
             </li>
             <li>
               <img
                 src={singleRoom}
                 alt="singleRoom"
-                className="w-[275px] h-[275px]" />
+                className="w-[275px] h-[275px]"
+              />
             </li>
             <li>
               <img
                 src={singleRoom}
                 alt="singleRoom"
-                className="w-[275px] h-[275px]" />
+                className="w-[275px] h-[275px]"
+              />
             </li>
             <li>
               <img
                 src={singleRoom}
                 alt="singleRoom"
-                className="w-[275px] h-[275px]" />
+                className="w-[275px] h-[275px]"
+              />
             </li>
             <li>
               <img
                 src={singleRoom}
                 alt="singleRoom"
-                className="w-[275px] h-[275px]" />
+                className="w-[275px] h-[275px]"
+              />
             </li>
           </ul>
         </div>

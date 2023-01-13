@@ -2,6 +2,7 @@ import singleRoom from "../images/room1/singleRoom.jpeg";
 import backHome from "../images/back home.png";
 import AC from "../images/amenities/icon_amenities_Air-Conditioner.svg";
 import OK from "../images/amenities/icons-ok.svg";
+import RoomCarousel from "../components/RoomCarousel";
 
 export function Rooms() {
   const iconAry = [];
@@ -15,9 +16,14 @@ export function Rooms() {
       <nav className="w-[573px]">
         {/* 輪播圖 */}
         <div className="relative">
+<<<<<<< HEAD
           <div className="w-full h-screen">
             <img src={singleRoom} alt="singleRoom" />
           </div>
+=======
+          {/* <img src={singleRoom} alt="singleRoom" className="gradient" /> */}
+         <RoomCarousel />
+>>>>>>> main
           {/* 返回首頁按鈕 */}
           <button
             type="button"
