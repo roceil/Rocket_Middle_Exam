@@ -8,6 +8,7 @@ import RoomCarousel from "../components/RoomCarousel";
 import RoomDetail from "../container/RoomDetail";
 import DialogBgBlur from "../component/DialogBgBlur";
 import Dialog from "../container/Dialog"
+import { NavLink } from "react-router-dom";
 
 export function Rooms() {
   const iconAry = [];
@@ -43,9 +44,9 @@ export function Rooms() {
             className="flex items-center absolute top-[87px] left-[128px]"
           >
             <img src={backHome} alt="backHome" className="m-[10px] " />
-            <span className="font-light text-sm 2xl:text-base 3xl:text-lg text-primary">
+            <NavLink to="/" className="font-light text-sm 2xl:text-base 3xl:text-lg text-primary">
               查看其他房型
-            </span>
+            </NavLink >
           </button>
           {/* 價格＆預約按鈕 */}
           <div className=" flex flex-col items-center absolute bottom-[109px] left-[161px]">
