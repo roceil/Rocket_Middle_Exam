@@ -14,7 +14,10 @@ module.exports = {
       },
     },
     extend: {
-      // 這邊應該要新增xl以上的斷點 1280
+      screens: {
+        // 新增2xl以上的斷點 (1536px)
+        '3xl': '1600px',
+      },
       colors: {
         'primary': '#38470B',
         "light-primary": "#949C7C"
