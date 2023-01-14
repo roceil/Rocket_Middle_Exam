@@ -6,7 +6,7 @@ import Dialog from "./container/Dialog";
 function App() {
   return (
     <>
-      <Home></Home>
+      {/* <Home></Home> */}
       <Rooms></Rooms>
       {/* <Dialog/> */}
     </>
