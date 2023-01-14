@@ -28,13 +28,13 @@ export function Rooms() {
     }
   };
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen justify-between">
       {showBg}
       {/* Nav */}
-      <nav className="w-[42%]">
+      <nav className="w-full h-full fixed">
         {/* 輪播圖 */}
         <RoomCarousel />
-
+        {/* nav這兩個好難定位QAQ by家洋 */}
         <div className="">
           {/* <img src={singleRoom} alt="singleRoom" className="gradient" /> */}
           {/* 返回首頁按鈕 */}
@@ -43,7 +43,7 @@ export function Rooms() {
             className="flex items-center absolute top-[87px] left-[128px]"
           >
             <img src={backHome} alt="backHome" className="m-[10px] " />
-            <span className="font-light text-sm text-primary">
+            <span className="font-light text-sm 2xl:text-base 3xl:text-lg text-primary">
               查看其他房型
             </span>
           </button>
@@ -64,9 +64,10 @@ export function Rooms() {
           </div>
         </div>
       </nav>
-
-      {/* RoomInfo */}
-      <div className="mt-[133px] w-[635px] ml-[30px] text-primary">
+      {/* 因nav改fixed出現的佔位格 */}
+      <div className="w-[42%] mr-[30px] flex-shrink-0 "></div>
+      {/* 房間細節 */}
+      <div className="h-[200vh] mt-[13vh] mr-[13vh] w-[635px] text-primary">
         <RoomDetail />
         {/* icons */}
         <ul className="flex flex-wrap gap-x-10 gap-y-[26px] mb-7">
@@ -85,7 +86,12 @@ export function Rooms() {
           })}
         </ul>
         <p className="text-primary text-sm font-medium mb-2">空房狀態查詢</p>
+        {/* 日曆佔位格 */}
+        <div className="h-[50vh] bg-red-400">
+          <h1>我大概率是日曆</h1>
+        </div>
       </div>
+
     </div>
   );
 }
