@@ -1,26 +1,74 @@
-export function DialogFormInput() {
+import { BookingFormDate } from "./BookingFormDate";
+import { BookingForms } from "./BookingForms";
+
+export function DialogFormInput({ register, handleSubmit, setValue, errors }) {
+  const resetInput = () => {
+    setValue("name", "");
+    setValue("tel", "");
+    console.log(`已重置`);
+  };
+  const onSubmit = (e) => {
+    // 這邊要做確認送出後的事情
+    resetInput();
+  };
   return (
-    <form className="flex flex-col space-y-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-4">
       {/* 姓名 */}
-      <label>
-        <span className="block text-sm text-white mb-[7px]">姓名</span>
-        <input type="text" className="w-[315px] py-[7px] outline-none pl-2" />
-      </label>
+      <BookingForms
+        register={register}
+        errors={errors}
+        labelName={"name"}
+        labelTag={"姓名"}
+        labelType={"text"}
+        labelPlaceHolder={"請填寫預訂人姓名"}
+        rules={{
+          required: {
+            value: true,
+            message: "*此欄位為必填",
+          },
+        }}
+      />
       {/* 手機號碼 */}
-      <label>
-        <span className="block text-sm text-white mb-[7px]">手機號碼</span>
-        <input type="tel" className="w-[315px] py-[7px] outline-none pl-2" />
-      </label>
+      <BookingForms
+        register={register}
+        errors={errors}
+        labelName={"tel"}
+        labelTag={"手機號碼"}
+        labelType={"tel"}
+        labelPlaceHolder={"請填寫預訂人電話"}
+        rules={{
+          required: {
+            value: true,
+            message: "*此欄位為必填",
+          },
+        }}
+      />
       {/* 入住日期 */}
-      <label>
-        <span className="block text-sm text-white mb-[7px]">入住日期</span>
-        <input type="date" className="w-[315px] py-[7px] outline-none px-2" />
-      </label>
+      <BookingFormDate
+        register={register}
+        errors={errors}
+        labelTag={"入住日期"}
+        labelName={"checkInData"}
+        rules={{
+          required: {
+            value: true,
+            message: "*此欄位為必填",
+          },
+        }}
+      />
       {/* 退房日期 */}
-      <label>
-        <span className="block text-sm text-white mb-[7px]">退房日期</span>
-        <input type="date" className="w-[315px] py-[7px] outline-none px-2" />
-      </label>
+      <BookingFormDate
+        register={register}
+        errors={errors}
+        labelTag={"退房日期"}
+        labelName={"checkOutData"}
+        rules={{
+          required: {
+            value: true,
+            message: "*此欄位為必填",
+          },
+        }}
+      />
 
       {/* 天數顯示 */}
       <div className="">
@@ -37,7 +85,8 @@ export function DialogFormInput() {
 
       {/* 送出按鈕 */}
       <button
-        type="button"
+        // onClick={onSubmit}
+        type="submit"
         className="text-white text-[18px] font-bold border border-white py-2 hover:bg-white hover:text-primary hover:duration-300"
       >
         確認送出
