@@ -1,4 +1,4 @@
-import { DialogFormInput } from "../component/DialogFormInput";
+import { DialogFormInput } from "../components/DialogFormInput";
 
 export function DialogBookingForm({
   setBgStatus,
