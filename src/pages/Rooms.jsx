@@ -32,12 +32,10 @@ export function Rooms() {
     <div className="flex h-screen justify-between">
       {showBg}
       {/* Nav */}
-      <nav className="w-full h-full fixed">
+      <nav className="w-[42%] h-full fixed">
         {/* 輪播圖 */}
         <RoomCarousel />
-        {/* nav這兩個好難定位QAQ by家洋 */}
         <div className="">
-          {/* <img src={singleRoom} alt="singleRoom" className="gradient" /> */}
           {/* 返回首頁按鈕 */}
           <button
             type="button"
@@ -86,7 +84,7 @@ export function Rooms() {
             );
           })}
         </ul>
-        <p className="text-primary text-sm font-medium mb-2">空房狀態查詢</p>
+        <p className="text-primary text-sm font-medium mb-2 leading-6">空房狀態查詢</p>
         {/* 日曆佔位格 */}
         <div className="h-[50vh] bg-red-400">
           <h1>我大概率是日曆</h1>

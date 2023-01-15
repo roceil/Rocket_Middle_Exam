@@ -20,7 +20,7 @@ function RoomList() {
 
   return (
     <>
-      <ul className="flex flex-wrap justify-end w-[825px]">
+      <ul className="flex flex-wrap justify-end w-[825px] min-h-[550px]">
         {
           data.map((item) => {
             return (
