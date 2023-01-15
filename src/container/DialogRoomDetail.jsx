@@ -1,9 +1,9 @@
 import close from "../images/icons8-cancel.png";
-import { DialogRoomTitle } from "../component/DialogRoomTitle";
-import { DialogRoomInfo } from "../component/DialogRoomInfo";
-import { DialogRoomIcons } from "../component/DialogRoomIcons";
+import { DialogRoomTitle } from "../components/DialogRoomTitle";
+import { DialogRoomInfo } from "../components/DialogRoomInfo";
+import { DialogRoomIcons } from "../components/DialogRoomIcons";
 import { DialogRoomBookingInfo } from "./DialogRoomBookingInfo";
-import { DialogBookingStep } from "../component/DialogBookingStep";
+import { DialogBookingStep } from "../components/DialogBookingStep";
 
 export function DialogRoomDetail({ setBgStatus }) {
   const closeBg = () => {
