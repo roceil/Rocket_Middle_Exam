@@ -32,8 +32,8 @@
   .bookingSuccess {
     @apply bg-primary fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] z-10  flex flex-col space-y-[41px] items-center text-center text-white;
   }
-  .closeBtnHover{
-    @apply hover:opacity-50 hover:duration-300
+  .closeBtnHover {
+    @apply hover:opacity-50 hover:duration-300;
   }
 }
 
@@ -95,7 +95,7 @@
   .HomePage .react-slideshow-container + ul.indicators {
     position: absolute;
     bottom: 46px;
-    left: 150px;
+    left: 22%;
   }
 
   .HomePage
@@ -109,7 +109,7 @@
   .RoomPage .react-slideshow-container + ul.indicators {
     position: absolute;
     bottom: 46px;
-    left: 260px;
+    left: 46%;
   }
 
   .RoomPage
@@ -118,6 +118,4 @@
     .each-slideshow-indicator.active:before {
     background: #868f6c;
   }
-
-
 }

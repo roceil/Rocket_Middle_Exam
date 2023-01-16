@@ -14,6 +14,7 @@ const token = 'Bearer IAlFGuHujADexllpJHWL1MenPYbizgbL00yxoV8wLs9zfZxS4hgs0wVo6E
 const authorization = { 'headers': { 'Authorization': token } };
 import { ModalProvider } from "react-modal-hook";
 
+
 export function Rooms() {
   const {id} = useParams();
   console.log(id);  
@@ -49,7 +50,7 @@ export function Rooms() {
   };
 
   return (
-    <div className="flex h-screen justify-between">
+    <div className="RoomPage flex h-screen justify-between">
       {showBg}
       {/* Nav */}
       <nav className="w-[42%] h-full fixed">

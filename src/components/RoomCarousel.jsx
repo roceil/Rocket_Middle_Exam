@@ -22,23 +22,11 @@ const RoomCarousel = () => {
 
   const modalButtonStyle = {
     color: "#ffffff",
-    outline: "none",
-    border: "none",
   };
-
-  // 設定 modal prev & next button
-  let opacityFirst = "";
-  images.map((item, index) => {
-    // console.log(index,item)
-    opacityFirst =
-      index === 0
-        ? (modalButtonStyle.opacity = "0.2")
-        : (modalButtonStyle.opacity = "1");
-  });
 
   const modalProperties = {
     prevArrow: (
-      <button style={{ ...modalButtonStyle, opacity: "0.2" }}>
+      <button style={{ ...modalButtonStyle, opacity: "0.2" }} >
         <span className="material-icons text-[58px]">arrow_back_ios</span>
       </button>
     ),
@@ -48,6 +36,8 @@ const RoomCarousel = () => {
       </button>
     ),
   };
+
+
 
   // 輪播彈窗
   const [showModal, hideModal] = useModal(() => (
@@ -68,7 +58,6 @@ const RoomCarousel = () => {
         className="w-full"
         onClick={hideModal}
         onChange={(e) => console.log(e)}
-      // firstSlideProps={{ prevArrow: { opacity: "0.2" } }}
       >
         {images.map((item, index) => {
           return (
