@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 
-import singleRoom from "../images/room1/singleRoom.jpeg";
 import backHome from "../images/back home.png";
-import AC from "../images/amenities/icon_amenities_Air-Conditioner.svg";
-import OK from "../images/amenities/icons-ok.svg";
 import RoomCarousel from "../components/RoomCarousel";
 import RoomDetail from "../container/RoomDetail";
 import Dialog from "../container/Dialog"
@@ -16,7 +13,7 @@ import { ModalProvider } from "react-modal-hook";
 
 export function Rooms() {
   const {id} = useParams();
-  console.log(id);  
+  // console.log(id);  
   
   const [data,setData] = useState([])
   useEffect(() => {
@@ -28,12 +25,6 @@ export function Rooms() {
 
     getRoomInfo();
   }, [])
-
-
-  // const iconAry = [];
-  // for (let i = 0; i < 8; i++) {
-  //   iconAry.push("");
-  // }
 
   const [bgStatus, setBgStatus] = useState(false);
 
