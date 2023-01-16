@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import singleRoom from "../images/room1/singleRoom.jpeg";
 import backHome from "../images/back home.png";
@@ -8,13 +8,32 @@ import RoomCarousel from "../components/RoomCarousel";
 import RoomDetail from "../container/RoomDetail";
 import DialogBgBlur from "../components/DialogBgBlur";
 import Dialog from "../container/Dialog"
-import { NavLink } from "react-router-dom";
+import { NavLink,useParams } from "react-router-dom";
+import axios from 'axios'
+const url = 'https://challenge.thef2e.com/api/thef2e2019/stage6/room';
+const token = 'Bearer IAlFGuHujADexllpJHWL1MenPYbizgbL00yxoV8wLs9zfZxS4hgs0wVo6E6b';
+const authorization = { 'headers': { 'Authorization': token } };
 
 export function Rooms() {
-  const iconAry = [];
-  for (let i = 0; i < 8; i++) {
-    iconAry.push("");
-  }
+  const {id} = useParams();
+  console.log(id);  
+  
+  const [data,setData] = useState([])
+  useEffect(() => {
+    console.log('2,渲染完後得effect')
+    const getRoomInfo = async () => {
+      const res = await axios.get(`${url}/${id}`, authorization)
+      setData(res.data.room[0]);
+    }
+
+    getRoomInfo();
+  }, [])
+
+
+  // const iconAry = [];
+  // for (let i = 0; i < 8; i++) {
+  //   iconAry.push("");
+  // }
 
   const [bgStatus, setBgStatus] = useState(false);
 
@@ -67,11 +86,11 @@ export function Rooms() {
       <div className="w-[42%] mr-[30px] flex-shrink-0 "></div>
       {/* 房間細節 */}
       <div className="h-[200vh] mt-[13vh] mr-[13vh] w-[635px] text-primary">
-        <RoomDetail />
+        <RoomDetail data={data}/>
         {/* icons */}
-        <ul className="flex flex-wrap gap-x-10 gap-y-[26px] mb-7">
+        {/* <ul className="flex flex-wrap gap-x-10 gap-y-[26px] mb-7"> */}
           {/* 01 */}
-          {iconAry.map((item, i) => {
+          {/* {iconAry.map((item, i) => {
             return (
               <li key={i} className="flex">
                 <img src={AC} alt="" />
@@ -83,7 +102,7 @@ export function Rooms() {
               </li>
             );
           })}
-        </ul>
+        </ul> */}
         <p className="text-primary text-sm font-medium mb-2 leading-6">空房狀態查詢</p>
         {/* 日曆佔位格 */}
         <div className="h-[50vh] bg-red-400">
