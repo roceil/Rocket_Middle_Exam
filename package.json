@@ -16,6 +16,8 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.42.0",
     "react-router-dom": "^6.6.2",
+    "react-modal": "^3.16.1",
+    "react-modal-hook": "^3.0.2",
     "react-slideshow-image": "^4.1.1"
   },
   "devDependencies": {

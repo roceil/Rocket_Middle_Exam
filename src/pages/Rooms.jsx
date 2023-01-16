@@ -9,6 +9,9 @@ import RoomDetail from "../container/RoomDetail";
 import DialogBgBlur from "../components/DialogBgBlur";
 import Dialog from "../container/Dialog"
 import { NavLink } from "react-router-dom";
+import DialogBgBlur from "../component/DialogBgBlur";
+import Dialog from "../container/Dialog";
+import { ModalProvider } from "react-modal-hook";
 
 export function Rooms() {
   const iconAry = [];
@@ -28,13 +31,16 @@ export function Rooms() {
         break;
     }
   };
+
   return (
     <div className="flex h-screen justify-between">
       {showBg}
       {/* Nav */}
       <nav className="w-[42%] h-full fixed">
         {/* 輪播圖 */}
-        <RoomCarousel />
+        <ModalProvider>
+          <RoomCarousel />
+        </ModalProvider>
         <div className="buttonGroup flex relative h-screen pt-[87px] pb-[25vh] flex-col justify-between z-10">
           {/* 返回首頁按鈕 */}
           <button
