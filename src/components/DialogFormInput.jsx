@@ -48,7 +48,7 @@ export function DialogFormInput({ register, handleSubmit, setValue, errors }) {
         register={register}
         errors={errors}
         labelTag={"入住日期"}
-        labelName={"checkInData"}
+        labelName={"checkInDate"}
         rules={{
           required: {
             value: true,
@@ -61,7 +61,7 @@ export function DialogFormInput({ register, handleSubmit, setValue, errors }) {
         register={register}
         errors={errors}
         labelTag={"退房日期"}
-        labelName={"checkOutData"}
+        labelName={"checkOutDate"}
         rules={{
           required: {
             value: true,

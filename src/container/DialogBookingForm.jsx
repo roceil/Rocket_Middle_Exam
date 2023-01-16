@@ -6,8 +6,6 @@ export function DialogBookingForm({
   handleSubmit,
   setValue,
   errors,
-  control,
-  getValues,
 }) {
   return (
     <div className="w-[40.090%] bg-primary  flex items-center flex-col pt-[50px] pb-[26px]">
