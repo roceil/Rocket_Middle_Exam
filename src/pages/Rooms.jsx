@@ -7,7 +7,8 @@ import OK from "../images/amenities/icons-ok.svg";
 import RoomCarousel from "../components/RoomCarousel";
 import RoomDetail from "../container/RoomDetail";
 import DialogBgBlur from "../component/DialogBgBlur";
-import Dialog from "../container/Dialog"
+import Dialog from "../container/Dialog";
+import { ModalProvider } from "react-modal-hook";
 
 export function Rooms() {
   const iconAry = [];
@@ -17,7 +18,7 @@ export function Rooms() {
 
   const [bgStatus, setBgStatus] = useState(false);
 
-  let showBg = bgStatus === true ? <Dialog setBgStatus={setBgStatus}/> : "";
+  let showBg = bgStatus === true ? <Dialog setBgStatus={setBgStatus} /> : "";
   const BgSwitch = () => {
     switch (bgStatus) {
       case false:
@@ -27,14 +28,17 @@ export function Rooms() {
         break;
     }
   };
+
   return (
-    <div className="flex h-screen">
+    <div className="RoomPage flex h-screen">
       {showBg}
       {/* Nav */}
       <nav className="w-[573px]">
-        {/* 輪播圖 */}
-        <RoomCarousel />
-
+        {/* 輪播圖 & 彈窗 */}
+        <ModalProvider>
+          <RoomCarousel />
+        </ModalProvider>
+        
         <div className="">
           {/* <img src={singleRoom} alt="singleRoom" className="gradient" /> */}
           {/* 返回首頁按鈕 */}
@@ -67,7 +71,7 @@ export function Rooms() {
 
       {/* RoomInfo */}
       <div className="mt-[133px] w-[635px] ml-[30px] text-primary">
-        <RoomDetail/>
+        <RoomDetail />
         {/* icons */}
         <ul className="flex flex-wrap gap-x-10 gap-y-[26px] mb-7">
           {/* 01 */}

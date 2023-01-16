@@ -5,7 +5,6 @@ import homeCarouselFirst from "../images/house/homeCarouselFirst.jpeg";
 import homeCarouselSecond from "../images/house/homeCarouselSecond.jpeg";
 import homeCarouselThird from "../images/house/homeCarouselThird.jpeg";
 import homeCarouselFourth from "../images/house/homeCarouselFourth.jpeg";
-import './../homeCarousel.css'
 
 
 const HomeCarousel = () => {

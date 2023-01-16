@@ -23,11 +23,11 @@
 }
 
 @layer components {
-  .dialogTitle{
-    @apply inline-block bg-white relative z-10 pr-[6.5px] text-primary font-bold
+  .dialogTitle {
+    @apply inline-block bg-white relative z-10 pr-[6.5px] text-primary font-bold;
   }
-  .dialogTitle_div{
-    @apply  absolute w-[533px] h-[1px] bg-light-primary opacity-20 top-1/2 left-0 translate-y-[50%]
+  .dialogTitle_div {
+    @apply absolute w-[533px] h-[1px] bg-light-primary opacity-20 top-1/2 left-0 translate-y-[50%];
   }
 }
 
@@ -47,10 +47,10 @@
     opacity: 0.5;
     backdrop-filter: blur(80px);
     -webkit-backdrop-filter: blur(20px);
-    background: #FFFFFF 0% 0% no-repeat padding-box;
+    background: #ffffff 0% 0% no-repeat padding-box;
   }
 
-
+  /* carousel */
   .each-slide-effect > div {
     display: flex;
     align-items: center;
@@ -79,12 +79,38 @@
     background: transparent;
   }
 
-
-
   .react-slideshow-container + ul.indicators .each-slideshow-indicator:hover,
   .react-slideshow-container + ul.indicators .each-slideshow-indicator.active,
   .react-slideshow-container + ul.indicators .each-slideshow-indicator {
     opacity: 1;
+  }
+
+  /* homeCarousel indicator color */
+  .HomePage .react-slideshow-container + ul.indicators {
+    position: absolute;
+    bottom: 46px;
+    left: 150px;
+  }
+
+  .HomePage
+    .react-slideshow-container
+    + ul.indicators
+    .each-slideshow-indicator.active:before {
+    background: #ffffff;
+  }
+
+  /* roomCarousel indicator color */
+  .RoomPage .react-slideshow-container + ul.indicators {
+    position: absolute;
+    bottom: 46px;
+    left: 260px;
+  }
+
+  .RoomPage
+    .react-slideshow-container
+    + ul.indicators
+    .each-slideshow-indicator.active:before {
+    background: #868f6c;
   }
 
 
