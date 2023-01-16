@@ -68,7 +68,7 @@ const RoomCarousel = () => {
         className="w-full"
         onClick={hideModal}
         onChange={(e) => console.log(e)}
-        // firstSlideProps={{ prevArrow: { opacity: "0.2" } }}
+      // firstSlideProps={{ prevArrow: { opacity: "0.2" } }}
       >
         {images.map((item, index) => {
           return (
@@ -95,7 +95,7 @@ const RoomCarousel = () => {
   ));
 
   return (
-    <div className="w-[573px] h-full absolute cursor-pointer">
+    <div className="w-full h-full absolute cursor-pointer">
       <Slide {...properties} indicators={true}>
         {images.map((item, index) => {
           return (

@@ -6,11 +6,8 @@ import AC from "../images/amenities/icon_amenities_Air-Conditioner.svg";
 import OK from "../images/amenities/icons-ok.svg";
 import RoomCarousel from "../components/RoomCarousel";
 import RoomDetail from "../container/RoomDetail";
-import DialogBgBlur from "../components/DialogBgBlur";
 import Dialog from "../container/Dialog"
 import { NavLink } from "react-router-dom";
-import DialogBgBlur from "../component/DialogBgBlur";
-import Dialog from "../container/Dialog";
 import { ModalProvider } from "react-modal-hook";
 
 export function Rooms() {
