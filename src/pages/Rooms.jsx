@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { DateRangePicker } from "react-date-range";
 import { addDays } from "date-fns";
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css";
-import "../calendar.css"
+import "../calendar.css";
 import singleRoom from "../images/room1/singleRoom.jpeg";
 import backHome from "../images/back home.png";
 import RoomCarousel from "../components/RoomCarousel";
@@ -17,25 +17,35 @@ const token =
   "Bearer IAlFGuHujADexllpJHWL1MenPYbizgbL00yxoV8wLs9zfZxS4hgs0wVo6E6b";
 const authorization = { headers: { Authorization: token } };
 import { ModalProvider } from "react-modal-hook";
+import { log } from "react-modal/lib/helpers/ariaAppHider";
 
 export function Rooms() {
   const { id } = useParams();
-  console.log(id);
 
   const [data, setData] = useState([]);
   useEffect(() => {
-    console.log("2,渲染完後得effect");
     const getRoomInfo = async () => {
       const res = await axios.get(`${url}/${id}`, authorization);
       setData(res.data.room[0]);
     };
-
     getRoomInfo();
-  }, [])
+  }, []);
 
   const [bgStatus, setBgStatus] = useState(false);
+  const [state, setState] = useState([
+    {
+      startDate: new Date(),
+      endDate: addDays(new Date(),1),
+      key: "selection",
+    },
+  ]);
+  const tomorrow = dayjs().startOf("day").add(1, "day");
+  const date1 = dayjs(dayjs(state[0].startDate).format("YYYY-MM-DD"));
+  const date2 = dayjs(dayjs(state[0].endDate).format('YYYY-MM-DD'));
+  const diffWithDay = date2.diff(date1,'day'); 
+  console.log(diffWithDay);
 
-  let showBg = bgStatus === true ? <Dialog setBgStatus={setBgStatus} /> : "";
+  let showBg = bgStatus === true ? <Dialog setBgStatus={setBgStatus} state={state}/> : "";
   const BgSwitch = () => {
     switch (bgStatus) {
       case false:
@@ -45,14 +55,6 @@ export function Rooms() {
         break;
     }
   };
-  const [state, setState] = useState([
-    {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 7),
-      key: "selection",
-    },
-  ]);
-  const tomorrow = dayjs().startOf('day').add(1, 'day');
 
   return (
     <div className="flex h-screen justify-between">
@@ -69,15 +71,18 @@ export function Rooms() {
           className="flex items-center relative mt-[87px] pl-[13vh]"
         >
           <img src={backHome} alt="backHome" className="m-[10px] " />
-          <NavLink to="/" className="font-light text-sm 2xl:text-base 3xl:text-lg text-primary">
+          <NavLink
+            to="/"
+            className="font-light text-sm 2xl:text-base 3xl:text-lg text-primary"
+          >
             查看其他房型
-          </NavLink >
+          </NavLink>
         </button>
         {/* 價格＆預約按鈕 */}
         <div className=" flex flex-col relative mb-[13vh] items-center">
           <div className="mb-[10px]">
             <span className="text-[36px] text-primary">$1,380 </span>
-            <span className="text-xl text-primary"> / 1晚</span>
+            <span className="text-xl text-primary">{` / ${diffWithDay}晚`}</span>
           </div>
 
           <button
@@ -88,7 +93,6 @@ export function Rooms() {
             Booking Now
           </button>
         </div>
-
       </nav>
       <div className="container flex">
         {/* 因nav改fixed出現的佔位格 */}
@@ -100,7 +104,6 @@ export function Rooms() {
             空房狀態查詢
           </p>
           {/* 日曆佔位格 */}
-          <div className="">
             <DateRangePicker
               onChange={(item) => setState([item.selection])}
               showSelectionPreview={true}
@@ -110,11 +113,10 @@ export function Rooms() {
               direction="horizontal"
               showMonthAndYearPickers={false}
               minDate={dayjs(state.startDate).toDate()}
-              maxDate={tomorrow.add(89, 'day').toDate()}
+              maxDate={tomorrow.add(89, "day").toDate()}
               color="rgb(56, 71, 11)"
               date={new Date(state.endDate)}
             />
-          </div>
         </div>
       </div>
     </div>
