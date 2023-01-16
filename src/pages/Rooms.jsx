@@ -1,34 +1,39 @@
 import { useEffect, useState } from "react";
-
+import { DateRangePicker } from "react-date-range";
+import { addDays } from "date-fns";
+import dayjs from 'dayjs';
+import "react-date-range/dist/styles.css"; // main css file
+import "react-date-range/dist/theme/default.css";
+import "../calendar.css"
 import singleRoom from "../images/room1/singleRoom.jpeg";
 import backHome from "../images/back home.png";
 import AC from "../images/amenities/icon_amenities_Air-Conditioner.svg";
 import OK from "../images/amenities/icons-ok.svg";
 import RoomCarousel from "../components/RoomCarousel";
 import RoomDetail from "../container/RoomDetail";
-import Dialog from "../container/Dialog"
-import { NavLink,useParams } from "react-router-dom";
-import axios from 'axios'
-const url = 'https://challenge.thef2e.com/api/thef2e2019/stage6/room';
-const token = 'Bearer IAlFGuHujADexllpJHWL1MenPYbizgbL00yxoV8wLs9zfZxS4hgs0wVo6E6b';
-const authorization = { 'headers': { 'Authorization': token } };
+import Dialog from "../container/Dialog";
+import { NavLink, useParams } from "react-router-dom";
+import axios from "axios";
+const url = "https://challenge.thef2e.com/api/thef2e2019/stage6/room";
+const token =
+  "Bearer IAlFGuHujADexllpJHWL1MenPYbizgbL00yxoV8wLs9zfZxS4hgs0wVo6E6b";
+const authorization = { headers: { Authorization: token } };
 import { ModalProvider } from "react-modal-hook";
 
 export function Rooms() {
-  const {id} = useParams();
-  console.log(id);  
-  
-  const [data,setData] = useState([])
+  const { id } = useParams();
+  console.log(id);
+
+  const [data, setData] = useState([]);
   useEffect(() => {
-    console.log('2,渲染完後得effect')
+    console.log("2,渲染完後得effect");
     const getRoomInfo = async () => {
-      const res = await axios.get(`${url}/${id}`, authorization)
+      const res = await axios.get(`${url}/${id}`, authorization);
       setData(res.data.room[0]);
-    }
+    };
 
     getRoomInfo();
-  }, [])
-
+  }, []);
 
   // const iconAry = [];
   // for (let i = 0; i < 8; i++) {
@@ -47,6 +52,14 @@ export function Rooms() {
         break;
     }
   };
+  const [state, setState] = useState([
+    {
+      startDate: new Date(),
+      endDate: addDays(new Date(), 7),
+      key: "selection",
+    },
+  ]);
+const tomorrow = dayjs().startOf('day').add(1, 'day');
 
   return (
     <div className="flex h-screen justify-between">
@@ -59,14 +72,14 @@ export function Rooms() {
         </ModalProvider>
         <div className="buttonGroup flex relative h-screen pt-[87px] pb-[25vh] flex-col justify-between z-10">
           {/* 返回首頁按鈕 */}
-          <button
-            type="button"
-            className="flex items-center pl-[13vh]"
-          >
+          <button type="button" className="flex items-center pl-[13vh]">
             <img src={backHome} alt="backHome" className="m-[10px] " />
-            <NavLink to="/" className="font-light text-sm 2xl:text-base 3xl:text-lg text-primary">
+            <NavLink
+              to="/"
+              className="font-light text-sm 2xl:text-base 3xl:text-lg text-primary"
+            >
               查看其他房型
-            </NavLink >
+            </NavLink>
           </button>
           {/* 價格＆預約按鈕 */}
           <div className=" flex flex-col items-center">
@@ -90,15 +103,28 @@ export function Rooms() {
         <div className="w-[42%] mr-[30px] flex-shrink-0 "></div>
         {/* 房間細節 */}
         <div className="h-[200vh] mt-[13vh]  w-[635px] text-primary">
-          <RoomDetail data={data}/>
-          <p className="text-primary text-sm font-medium mb-2 leading-6">空房狀態查詢</p>
+          <RoomDetail data={data} />
+          <p className="text-primary text-sm font-medium mb-2 leading-6">
+            空房狀態查詢
+          </p>
           {/* 日曆佔位格 */}
-          <div className="h-[50vh] bg-red-400">
-            <h1>我大概率是日曆</h1>
+          <div className="">
+            <DateRangePicker
+              onChange={(item) => setState([item.selection])}
+              showSelectionPreview={true}
+              moveRangeOnFirstSelection={false}
+              months={2}
+              ranges={state}
+              direction="horizontal"
+              showMonthAndYearPickers={false}
+              minDate={dayjs(state.startDate).toDate()}
+              maxDate={tomorrow.add(89, 'day').toDate()}
+              color="rgb(56, 71, 11)"
+              date={new Date(state.endDate)}
+            />
           </div>
         </div>
       </div>
-
     </div>
   );
 }
