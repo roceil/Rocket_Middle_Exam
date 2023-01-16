@@ -1,35 +1,56 @@
+import { useState } from "react";
+
 import singleRoom from "../images/room1/singleRoom.jpeg";
 import backHome from "../images/back home.png";
 import AC from "../images/amenities/icon_amenities_Air-Conditioner.svg";
 import OK from "../images/amenities/icons-ok.svg";
+import RoomCarousel from "../components/RoomCarousel";
+import RoomDetail from "../container/RoomDetail";
+import Dialog from "../container/Dialog"
+import { NavLink } from "react-router-dom";
+import { ModalProvider } from "react-modal-hook";
 
 export function Rooms() {
   const iconAry = [];
   for (let i = 0; i < 8; i++) {
-    iconAry.push('')
+    iconAry.push("");
   }
 
+  const [bgStatus, setBgStatus] = useState(false);
+
+  let showBg = bgStatus === true ? <Dialog setBgStatus={setBgStatus} /> : "";
+  const BgSwitch = () => {
+    switch (bgStatus) {
+      case false:
+        setBgStatus(true);
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen justify-between">
+      {showBg}
       {/* Nav */}
-      <nav className="w-[573px]">
+      <nav className="w-[42%] h-full fixed">
         {/* 輪播圖 */}
-        <div className="relative">
-          <div className="w-full h-screen">
-            <img src={singleRoom} alt="singleRoom" />
-          </div>
+        <ModalProvider>
+          <RoomCarousel />
+        </ModalProvider>
+        <div className="buttonGroup flex relative h-screen pt-[87px] pb-[25vh] flex-col justify-between z-10">
           {/* 返回首頁按鈕 */}
           <button
             type="button"
-            className="flex items-center absolute top-[87px] left-[128px]"
+            className="flex items-center pl-[13vh]"
           >
             <img src={backHome} alt="backHome" className="m-[10px] " />
-            <span className="font-light text-sm text-primary">
+            <NavLink to="/" className="font-light text-sm 2xl:text-base 3xl:text-lg text-primary">
               查看其他房型
-            </span>
+            </NavLink >
           </button>
           {/* 價格＆預約按鈕 */}
-          <div className=" flex flex-col items-center absolute bottom-[109px] left-[161px]">
+          <div className=" flex flex-col items-center">
             <div className="mb-[10px]">
               <span className="text-[36px] text-primary">$1,380 </span>
               <span className="text-xl text-primary"> / 1晚</span>
@@ -37,6 +58,7 @@ export function Rooms() {
 
             <button
               type="button"
+              onClick={BgSwitch}
               className="text-xl text-white bg-primary py-[8.5px] w-[252px] block hover:opacity-50"
             >
               Booking Now
@@ -44,46 +66,36 @@ export function Rooms() {
           </div>
         </div>
       </nav>
-
-      {/* RoomInfo */}
-      <div className="mt-[133px] w-[635px] ml-[30px] text-primary">
-        <p className="w-full text-right mb-[47px]">
-          1人・ 單人床・ 附早餐・衛浴1間・18平方公尺
-        </p>
-        <p className="mb-[35px] text-sm">
-          平日（一～四）價格：1380 / 假日（五〜日）價格：1500 <br />
-          入住時間：15：00（最早）/ 21：00（最晚）
-          <br />
-          退房時間：10：00
-        </p>
-        <ul className="text-primary text-sm font-light mb-12">
-          <li>
-            ・單人間僅供一位客人使用。
-            <li>・臥室配有單人床和私人浴室。</li>
-            <li>
-              ・您需要的一切為您準備：床單和毯子，毛巾，肥皂和洗髮水，吹風機。
-            </li>
-            <li>・房間裡有AC，當然還有WiFi。</li>
-          </li>
-        </ul>
-        {/* icons */}
-        <ul className="flex flex-wrap gap-x-10 gap-y-[26px] mb-7">
-          {/* 01 */}
-          {iconAry.map((item, i) => {
-            return (
-              <li key={i} className="flex">
-                <img src={AC} alt="" />
-                <img
-                  src={OK}
-                  alt=""
-                  className="relative -top-[13px] -right-1 "
-                />
-              </li>
-            )
-          })}
-        </ul>
-        <p className="text-primary text-sm font-medium mb-2">空房狀態查詢</p>
+      <div className="container flex">
+        {/* 因nav改fixed出現的佔位格 */}
+        <div className="w-[42%] mr-[30px] flex-shrink-0 "></div>
+        {/* 房間細節 */}
+        <div className="h-[200vh] mt-[13vh]  w-[635px] text-primary">
+          <RoomDetail />
+          {/* icons */}
+          <ul className="flex flex-wrap gap-x-10 gap-y-[26px] mb-7">
+            {/* 01 */}
+            {iconAry.map((item, i) => {
+              return (
+                <li key={i} className="flex">
+                  <img src={AC} alt="" />
+                  <img
+                    src={OK}
+                    alt=""
+                    className="relative -top-[13px] -right-1 "
+                  />
+                </li>
+              );
+            })}
+          </ul>
+          <p className="text-primary text-sm font-medium mb-2 leading-6">空房狀態查詢</p>
+          {/* 日曆佔位格 */}
+          <div className="h-[50vh] bg-red-400">
+            <h1>我大概率是日曆</h1>
+          </div>
+        </div>
       </div>
+
     </div>
   );
 }

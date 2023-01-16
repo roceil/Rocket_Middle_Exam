@@ -12,7 +12,7 @@
   html,
   body {
     width: 100%;
-    height: 100vh;
+    height: 10vh;
     margin: 0;
     padding: 0;
     /* @apply bg-black */
@@ -23,11 +23,17 @@
 }
 
 @layer components {
-  .dialogTitle{
-    @apply inline-block bg-white relative z-10 pr-[6.5px] text-primary font-bold
+  .dialogTitle {
+    @apply inline-block bg-white relative z-10 pr-[6.5px] text-primary font-bold;
   }
-  .dialogTitle_div{
-    @apply  absolute w-[533px] h-[1px] bg-light-primary opacity-20 top-1/2 left-0 translate-y-[50%]
+  .dialogTitle_div {
+    @apply absolute w-[533px] h-[1px] bg-light-primary opacity-20 top-1/2 left-0 translate-y-[50%];
+  }
+  .bookingSuccess {
+    @apply bg-primary fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] z-10  flex flex-col space-y-[41px] items-center text-center text-white;
+  }
+  .closeBtnHover{
+    @apply hover:opacity-50 hover:duration-300
   }
 }
 
@@ -37,25 +43,81 @@
   }
 
   .gradient {
+    @apply bg-gradient-to-r from-purple-500 to-pink-500;
     background: transparent linear-gradient(180deg, #ffffff00 0%, #ffffff 100%)
       0% 0% no-repeat padding-box;
   }
   .blur {
+    position: fixed;
+    z-index: 10;
     opacity: 0.5;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(80px);
     -webkit-backdrop-filter: blur(20px);
-    background: #FFFFFF 0% 0% no-repeat padding-box;
+    background: #ffffff 0% 0% no-repeat padding-box;
   }
-  .blur {
-    opacity: 0.5;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    background: hsla(0,0%,85.5%,.75);
+
+  /* carousel */
+  .each-slide-effect > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    height: 350px;
   }
-  .blur {
-    opacity: 0.5;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    background: #FFFFFF 0% 0% no-repeat padding-box;
+
+  .each-slide-effect span {
+    padding: 20px;
+    font-size: 20px;
+    background: #efefef;
+    text-align: center;
   }
+
+  .react-slideshow-container + ul.indicators li {
+    width: 12px;
+    hoeight: 12px;
+    padding: 11px;
+  }
+
+  .react-slideshow-container + ul.indicators .each-slideshow-indicator:before {
+    width: 12px;
+    height: 12px;
+    border: 1px solid #ffffff;
+    background: transparent;
+  }
+
+  .react-slideshow-container + ul.indicators .each-slideshow-indicator:hover,
+  .react-slideshow-container + ul.indicators .each-slideshow-indicator.active,
+  .react-slideshow-container + ul.indicators .each-slideshow-indicator {
+    opacity: 1;
+  }
+
+  /* homeCarousel indicator color */
+  .HomePage .react-slideshow-container + ul.indicators {
+    position: absolute;
+    bottom: 46px;
+    left: 150px;
+  }
+
+  .HomePage
+    .react-slideshow-container
+    + ul.indicators
+    .each-slideshow-indicator.active:before {
+    background: #ffffff;
+  }
+
+  /* roomCarousel indicator color */
+  .RoomPage .react-slideshow-container + ul.indicators {
+    position: absolute;
+    bottom: 46px;
+    left: 260px;
+  }
+
+  .RoomPage
+    .react-slideshow-container
+    + ul.indicators
+    .each-slideshow-indicator.active:before {
+    background: #868f6c;
+  }
+
+
 }
