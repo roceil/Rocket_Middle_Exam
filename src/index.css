@@ -56,6 +56,7 @@
     background: #ffffff 0% 0% no-repeat padding-box;
   }
 
+  /* carousel */
   .each-slide-effect > div {
     display: flex;
     align-items: center;
@@ -89,4 +90,34 @@
   .react-slideshow-container + ul.indicators .each-slideshow-indicator {
     opacity: 1;
   }
+
+  /* homeCarousel indicator color */
+  .HomePage .react-slideshow-container + ul.indicators {
+    position: absolute;
+    bottom: 46px;
+    left: 150px;
+  }
+
+  .HomePage
+    .react-slideshow-container
+    + ul.indicators
+    .each-slideshow-indicator.active:before {
+    background: #ffffff;
+  }
+
+  /* roomCarousel indicator color */
+  .RoomPage .react-slideshow-container + ul.indicators {
+    position: absolute;
+    bottom: 46px;
+    left: 260px;
+  }
+
+  .RoomPage
+    .react-slideshow-container
+    + ul.indicators
+    .each-slideshow-indicator.active:before {
+    background: #868f6c;
+  }
+
+
 }
