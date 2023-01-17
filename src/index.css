@@ -30,7 +30,7 @@
     @apply absolute w-[533px] h-[1px] bg-light-primary opacity-20 top-1/2 left-0 translate-y-[50%];
   }
   .bookingSuccess {
-    @apply bg-primary fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] z-10  flex flex-col space-y-[41px] items-center text-center text-white;
+    @apply bg-primary fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] z-20  flex flex-col space-y-[41px] items-center text-center text-white;
   }
   .closeBtnHover {
     @apply hover:opacity-50 hover:duration-300;

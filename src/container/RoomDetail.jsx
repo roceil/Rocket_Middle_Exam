@@ -13,90 +13,64 @@ import TV from "../images/amenities/icon_amenities_Television.svg";
 import WiFi from "../images/amenities/icon_amenities_Wi-Fi.svg";
 import Cancel from "../images/amenities/icons-Cancel.svg";
 import OK from "../images/amenities/icons-ok.svg";
+import { Loading } from "../pages/Loading";
 
 
 function RoomDetail({data}) {
-  console.log(data);
+  // console.log(data);
   let roomData = data;
-  console.log(roomData.amenities);
-  Object.keys(data.amenities?data.amenities:{}).map((item)=>{
-    console.log(data.amenities[item]);
-  })
-
-  // const roomItems = Object.keys(roomData.amenities)
-
   // 房型資訊斷句
   let roomInfo = data.description?.split(/\.\s+/)
-
   // 房型 icons
   const iconsAry = [AC, BF, Child, View, Bar, Pet, Ref, Service, Smoke, Sofa, TV, WiFi]
-  // console.log(1, '渲染中');
+  // icons 名稱
+  const iconsName = ['空調', '早餐', '適合兒童', '漂亮的視野', 'Mini Bar', '攜帶寵物', '冰箱', '客房服務', '全面禁菸', '沙發', '電話', 'WiFi'];
+  // icons true & false 值
+  const itemsAry = [];
 
-  // const [item, SetItem] = useState([]);
+  // roomData.amenities 屬性轉陣列 -> 再將值生成新陣列 -> 用 index 跟 iconsAry 比對
+  Object.keys(data.amenities?data.amenities:{}).map((item)=>{
+    itemsAry.push(data.amenities[item]);
+  })
 
-  // const CheckItems = () =>{
-  //   const haveAmenities = data.amenities.Sofa === true;
-  //   if (haveAmenities){
-  //     return (
-  //       <img
-  //       src={OK}
-  //       alt=""
-  //       className="w-[15px] h-[15px] relative -top-[13px] -right-1 "
-  //     />
-  //     )
-  //   } else{
-  //     return (
-  //       <img
-  //       src={Cancel}
-  //       alt=""
-  //       className="w-[15px] h-[15px] relative -top-[13px] -right-1 "
-  //     />
-  //     )
-  //   }
-  // };
-  useEffect(() => {
-    const CheckItems = async() =>{
-      const haveAmenities = await roomData.amenities?.Breakfast;
-      // console.log(haveAmenities?'遲到了':'失敗了');
-      // if (haveAmenities){
-      //   return (
-      //     <img
-      //     src={OK}
-      //     alt=""
-      //     className="w-[15px] h-[15px] relative -top-[13px] -right-1 "
-      //   />
-      //   )
-      // } else{
-      //   return (
-      //     <img
-      //     src={Cancel}
-      //     alt=""
-      //     className="w-[15px] h-[15px] relative -top-[13px] -right-1 "
-      //   />
-      //   )
-      // }
-    };
-    // 根據 true/false 顯示不同 OK 或 Cancel
-  // //     // // 字串轉中文（待處理）
-  // //     // roomDescription = new Intl.Locale(roomData.description, 'zh-TW');
-  // //     //   if(roomData.description !== undefined){
-  // //     //   roomDescription = new Intl.Locale(roomData.description, 'zh-TW');
-  // //     // }
-      CheckItems();
-  }, [])
+  // API 英文資料轉中文
+  let bedType = '';
+  if(roomData.descriptionShort?.['Bed'][0]==='Small Double'){
+    bedType = '小張雙人床';
+  }else if (roomData.descriptionShort?.['Bed'][0]==='Double'){
+    bedType = '雙人床';
+  }else if (roomData.descriptionShort?.['Bed'][0]==='Single'){
+    bedType = '單人床';
+  }else if (roomData.descriptionShort?.['Bed'][0]==='Queen'){
+    bedType = '雙人床加大';
+  }
 
   // useEffect(() => {
-  //   const roomItems = Object.keys(roomData.amenities)
-  //   SetItem(roomItems)
-  //   console.log(item);
-  // }, [])
+  // // //     // // 字串轉中文（待處理）
+  // // //     // roomDescription = new Intl.Locale(roomData.description, 'zh-TW');
+  // // //     //   if(roomData.description !== undefined){
+  // // //     //   roomDescription = new Intl.Locale(roomData.description, 'zh-TW');
+  // // //     // }
+
+  function Loading(){
+    setTimeout(function() {
+      return(
+        <div>
+          <h1 className="bg-light-primary text-white">像家一樣・溫暖自在</h1>
+        </div>
+      )
+    }, 1700)
+  }
 
   return (
     <>
-    {data.length===0?<h1 className="bg-red-400">Loading</h1>:null}
+    {data.length===0 ?
+    <h1 className="bg-light-primary text-white">像家一樣・溫暖自在</h1>
+    :null}
+
       <p className="w-full mb-12 text-right mb-[47px]leading-6">
-      {roomData.descriptionShort?.['GuestMin']}-{roomData.descriptionShort?.['GuestMax']}人
-      ・ {roomData.descriptionShort?.['Bed']}
+      {roomData.descriptionShort?.['GuestMax']}人
+      ・ {bedType} {roomData.descriptionShort?.['Bed'].length}張
       ・ 附早餐
       ・{roomData.descriptionShort?.['Private-Bath']}衛浴間
       ・{roomData.descriptionShort?.Footage}平方公尺
@@ -114,19 +88,19 @@ function RoomDetail({data}) {
         ))}
       </ul>
       {/* icons */}
-      <ul className="flex flex-wrap gap-x-10 gap-y-[26px] mb-7">
-        {/* 01 */}
+      <ul className="flex flex-wrap gap-x-9 gap-y-[26px] mb-7">
         {iconsAry.map((item, i) => {
           return (
-            <li key={i} className="flex">
-              <h1>123</h1>
-              <img src={item} alt="" />
-              {/* {CheckItems} */}
+            <li key={i} className="flex  mb-[26px]">
+              <div className="flex flex-col space-y-2 items-center">
+                <img src={item} alt="" className= {itemsAry[i] ? 'w-10 h-10 ' : 'opacity-30 w-10 h-10'}/>
+                <p className={itemsAry[i] ? 'text-[10px] mt-2 text-center' : 'opacity-30 text-[10px] mt-2 text-center'}>{iconsName[i]}</p>
+              </div>                
               <img
-                src={true?OK:Cancel}
-                alt=""
-                className="w-[15px] h-[15px] relative -top-[13px] -right-1 "
-              />
+                  src={itemsAry[i] ? OK : Cancel}
+                  alt=""
+                  className= {itemsAry[i] ? 'w-[15px] h-[15px] ml-1' :'opacity-30 w-[15px] h-[15px] ml-1'}
+                />
             </li>
           );
         })}

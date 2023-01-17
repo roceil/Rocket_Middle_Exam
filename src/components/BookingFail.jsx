@@ -1,12 +1,12 @@
 import DialogBgBlur from "./DialogBgBlur";
 import fail from "../images/amenities/icon_booking_fail.svg";
 import close from "../images/icons8-cancel-white.png";
-function BookingSuccess() {
+function BookingSuccess({closeFail}) {
   return (
     <>
-      <DialogBgBlur />
+      <DialogBgBlur closeFail={closeFail}/>
       <div className="w-[1110px] h-[600px] bookingSuccess pt-[38.86px]">
-        <button type="button" className="w-full flex justify-end pr-[38.86px] closeBtnHover">
+        <button onClick={closeFail} type="button" className="w-full flex justify-end pr-[38.86px] closeBtnHover">
           <img src={close} alt="" />
         </button>
         <div>
