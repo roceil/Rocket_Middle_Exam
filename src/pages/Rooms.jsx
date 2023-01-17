@@ -19,6 +19,7 @@ const authorization = { headers: { Authorization: token } };
 import { ModalProvider } from "react-modal-hook";
 import BookingSuccess from "../components/BookingSuccess";
 import BookingFail from "../components/BookingFail";
+import RoomModal from "../components/RoomModal";
 
 export function Rooms() {
   const { id } = useParams();
