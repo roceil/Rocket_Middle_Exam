@@ -63,7 +63,7 @@ export function Rooms() {
       <nav className="w-[42%] h-full flex flex-col justify-between fixed">
         {/* 輪播圖 */}
         <ModalProvider>
-          <RoomCarousel />
+          <RoomCarousel/>
         </ModalProvider>
         {/* 返回首頁按鈕 */}
         <button
