@@ -118,4 +118,13 @@
     .each-slideshow-indicator.active:before {
     background: #868f6c;
   }
+
+  /* roomCarousel modal arrow color */
+  .react-slideshow-container .modalArrow {
+    color: rgb(255, 255, 255);
+  }
+
+  .react-slideshow-container .modalArrow:disabled {
+    color: rgba(255, 255, 255, 0.2);
+  }
 }

@@ -18,6 +18,7 @@ const token =
 const authorization = { headers: { Authorization: token } };
 import { ModalProvider } from "react-modal-hook";
 import { log } from "react-modal/lib/helpers/ariaAppHider";
+import RoomModal from "../components/RoomModal";
 
 
 export function Rooms() {
@@ -57,14 +58,30 @@ export function Rooms() {
     }
   };
 
+  const [open, setOpen] = useState(false);
+  const toggleOpen = () => {
+    setOpen(!open);
+  };
+  let showModal = open === true ? <RoomModal toggleOpen={toggleOpen} /> : "";
+  // const BgSwitch = () => {
+  //   switch (bgStatus) {
+  //     case false:
+  //       setBgStatus(true);
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // };
+
   return (
     <div className="RoomPage flex h-screen justify-between">
       {showBg}
+      {showModal}
       {/* Nav */}
       <nav className="w-[42%] h-full flex flex-col justify-between fixed">
         {/* 輪播圖 */}
         <ModalProvider>
-          <RoomCarousel />
+          <RoomCarousel data={data} toggleOpen={toggleOpen}/>
         </ModalProvider>
         {/* 返回首頁按鈕 */}
         <button
