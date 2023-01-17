@@ -17,7 +17,6 @@ const token =
   "Bearer IAlFGuHujADexllpJHWL1MenPYbizgbL00yxoV8wLs9zfZxS4hgs0wVo6E6b";
 const authorization = { headers: { Authorization: token } };
 import { ModalProvider } from "react-modal-hook";
-import { log } from "react-modal/lib/helpers/ariaAppHider";
 
 export function Rooms() {
   const { id } = useParams();
@@ -35,17 +34,17 @@ export function Rooms() {
   const [state, setState] = useState([
     {
       startDate: new Date(),
-      endDate: addDays(new Date(),1),
+      endDate: addDays(new Date(), 1),
       key: "selection",
     },
   ]);
   const tomorrow = dayjs().startOf("day").add(1, "day");
   const date1 = dayjs(dayjs(state[0].startDate).format("YYYY-MM-DD"));
   const date2 = dayjs(dayjs(state[0].endDate).format('YYYY-MM-DD'));
-  const diffWithDay = date2.diff(date1,'day'); 
-  console.log(diffWithDay);
+  const diffWithDay = date2.diff(date1, 'day');
+  // console.log(diffWithDay);
 
-  let showBg = bgStatus === true ? <Dialog setBgStatus={setBgStatus} state={state}/> : "";
+  let showBg = bgStatus === true ? <Dialog setBgStatus={setBgStatus} state={state} data={data} /> : "";
   const BgSwitch = () => {
     switch (bgStatus) {
       case false:
@@ -55,6 +54,10 @@ export function Rooms() {
         break;
     }
   };
+
+  // ? 平日假日計算金額
+  let price = calPrice();
+
 
   return (
     <div className="flex h-screen justify-between">
@@ -81,7 +84,7 @@ export function Rooms() {
         {/* 價格＆預約按鈕 */}
         <div className=" flex flex-col relative mb-[13vh] items-center">
           <div className="mb-[10px]">
-            <span className="text-[36px] text-primary">$1,380 </span>
+            <span className="text-[36px] text-primary">{`$${price ? price.toLocaleString() : 0}`} </span>
             <span className="text-xl text-primary">{` / ${diffWithDay}晚`}</span>
           </div>
 
@@ -104,21 +107,39 @@ export function Rooms() {
             空房狀態查詢
           </p>
           {/* 日曆佔位格 */}
-            <DateRangePicker
-              onChange={(item) => setState([item.selection])}
-              showSelectionPreview={true}
-              moveRangeOnFirstSelection={false}
-              months={2}
-              ranges={state}
-              direction="horizontal"
-              showMonthAndYearPickers={false}
-              minDate={dayjs(state.startDate).toDate()}
-              maxDate={tomorrow.add(89, "day").toDate()}
-              color="rgb(56, 71, 11)"
-              date={new Date(state.endDate)}
-            />
+          <DateRangePicker
+            onChange={(item) => setState([item.selection])}
+            showSelectionPreview={true}
+            moveRangeOnFirstSelection={false}
+            months={2}
+            ranges={state}
+            direction="horizontal"
+            showMonthAndYearPickers={false}
+            minDate={dayjs(state.startDate).toDate()}
+            maxDate={tomorrow.add(89, "day").toDate()}
+            color="rgb(56, 71, 11)"
+            date={new Date(state.endDate)}
+          />
         </div>
       </div>
     </div>
   );
+
+  function calPrice() {
+    const weekAry = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    let index = weekAry.indexOf(String(state[0].startDate).slice(0, 3)); // Tue
+    let price = 0;
+    let weekCount = index;
+    for (let i = 0; i < diffWithDay; i++) {
+      // console.log(weekCount);
+      if (weekCount === 5 || weekCount === 6 || weekCount === 0) {
+        price += data.holidayPrice;
+      } else {
+        price += data.normalDayPrice;
+      }
+      weekCount += 1;
+      if (weekCount === 7) { weekCount = 0; }
+    }
+    return price;
+  }
 }
