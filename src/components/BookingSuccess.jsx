@@ -1,12 +1,13 @@
 import DialogBgBlur from "./DialogBgBlur";
 import success from "../images/amenities/icon_booking_success.svg";
 import close from "../images/icons8-cancel-white.png";
-function BookingSuccess({ status }) {
+function BookingSuccess({ status,closeSuccess }) {
   return (
     <div className={`fixed z-30 ${status}`}>
-      <DialogBgBlur />
+      <DialogBgBlur closeSuccess={closeSuccess}/>
       <div className="w-[1110px] h-[600px] bookingSuccess pt-[38.86px] ">
         <button
+        onClick={closeSuccess}
           type="button"
           className="w-full flex justify-end pr-[38.86px] closeBtnHover"
         >

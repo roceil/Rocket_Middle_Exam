@@ -6,7 +6,6 @@ import dayjs from "dayjs";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css";
 import "../calendar.css";
-import singleRoom from "../images/room1/singleRoom.jpeg";
 import backHome from "../images/back home.png";
 import RoomCarousel from "../components/RoomCarousel";
 import RoomDetail from "../container/RoomDetail";
@@ -19,6 +18,7 @@ const token =
 const authorization = { headers: { Authorization: token } };
 import { ModalProvider } from "react-modal-hook";
 import BookingSuccess from "../components/BookingSuccess";
+import BookingFail from "../components/BookingFail";
 
 export function Rooms() {
   const { id } = useParams();
@@ -31,7 +31,7 @@ export function Rooms() {
     };
     getRoomInfo();
   }, []);
-  const [bgStatus, setBgStatus] = useState(false);
+
   const [state, setState] = useState([
     {
       startDate: addDays(new Date(), 1),
@@ -39,9 +39,15 @@ export function Rooms() {
       key: "selection",
     },
   ]);
+
   // 處理日期套件
+
+  // 用來抓預設日期
   let checkInDate = dayjs(state[0].startDate).format("YYYY-MM-DD");
   let checkOutDate = dayjs(state[0].endDate).format("YYYY-MM-DD");
+  // 用來算天數
+  const diffWithDay = dayjs(checkOutDate).diff(dayjs(checkInDate), "day");
+
   const {
     register,
     handleSubmit,
@@ -64,11 +70,8 @@ export function Rooms() {
     customerData.name = getResult.name;
     customerData.tel = getResult.tel;
     customerData.date = [getResult.checkInDate];
-    console.table(getResult);
   }, [watchForm]);
-  const date1 = dayjs(dayjs(state[0].startDate).format("YYYY-MM-DD"));
-  const date2 = dayjs(dayjs(state[0].endDate).format("YYYY-MM-DD"));
-  const diffWithDay = date2.diff(date1, "day");
+
 
   // 處理API POST
   const customerData = {
@@ -80,28 +83,41 @@ export function Rooms() {
     try {
       const res = await axios.post(`${url}/${id}`, customerData, authorization);
       setBgStatus(false);
-      setSuccess(true)
+      setSuccess(true);
       console.log(res.data);
     } catch (error) {
+      setBgStatus(false);
+      setFail(true);
       console.log(error);
     }
   };
   const [success, setSuccess] = useState(false);
-  let showSuccess = success === true ? <BookingSuccess /> : "";
+  const closeSuccess = () => {
+    setSuccess(false);
+  };
+  let showSuccess =
+    success === true ? <BookingSuccess closeSuccess={closeSuccess} /> : "";
 
+  const [fail, setFail] = useState(false);
+  const closeFail = () => {
+    setFail(false);
+  };
+  let showFail = fail === true ? <BookingFail closeFail={closeFail} /> : "";
+
+  const [bgStatus, setBgStatus] = useState(false);
+  const closeBg = () => {
+    setBgStatus(false);
+  };
   let showBg =
     bgStatus === true ? (
       <Dialog
         setBgStatus={setBgStatus}
-        state={state}
-        url={url}
-        id={id}
-        authorization={authorization}
         register={register}
         handleSubmit={handleSubmit}
         setValue={setValue}
         errors={errors}
         sendData={sendData}
+        closeBg={closeBg}
       />
     ) : (
       ""
@@ -116,9 +132,9 @@ export function Rooms() {
     }
   };
 
-
   return (
     <div className="flex h-screen justify-between">
+      {showFail}
       {showSuccess}
       {showBg}
       {/* Nav */}
@@ -160,14 +176,18 @@ export function Rooms() {
         {/* 因nav改fixed出現的佔位格 */}
         <div className="w-[42%] mr-[30px] flex-shrink-0 "></div>
         {/* 房間細節 */}
-        <div className="h-[200vh] mt-[13vh]  w-[635px] text-primary">
+        <div className=" mt-[13vh]  w-[635px] text-primary">
           <RoomDetail data={data} />
           <p className="text-primary text-sm font-medium mb-2 leading-6">
             空房狀態查詢
           </p>
           {/* 日曆佔位格 */}
           <DateRangePicker
-            onChange={(item) => setState([item.selection])}
+            onChange={(item) => {
+              setState([item.selection]);
+              setValue("checkInDate", dayjs(item.selection.startDate).format("YYYY-MM-DD"));
+              setValue("checkOutDate",dayjs(item.selection.endDate).format("YYYY-MM-DD"));
+            }}
             showSelectionPreview={true}
             moveRangeOnFirstSelection={false}
             months={2}
