@@ -6,8 +6,6 @@ import singleRoom2 from "../images/room1/singleRoom2.jpeg";
 import singleRoom3 from "../images/room1/singleRoom3.jpeg";
 import ReactModal from "react-modal";
 import { useModal } from "react-modal-hook";
-import { useState } from "react";
-import RoomModal from "./RoomModal";
 
 function RoomCarousel({ data, toggleOpen }) {
   // 輪播圖片(本地)
@@ -26,52 +24,66 @@ function RoomCarousel({ data, toggleOpen }) {
     nextArrow: <button style={{ ...buttonStyle }}></button>,
   };
 
-  // 輪播彈窗
-  // const [showModal, hideModal] = useModal(() => (
-  //   <ReactModal
-  //     isOpen
-  //     appElement={document.getElementById("root")}
-  //     ariaHideApp={false}
-  //     className="px-[128px] h-screen"
-  //     style={{
-  //       overlay: {
-  //         backgroundColor: "rgba(0,0,0,0.7)",
-  //       },
-  //     }}
-  //     onRequestClose={hideModal}
-  //   >
-  //     <Slide
-  //       {...modalProperties}
-  //       autoplay={false}
-  //       infinite={false}
-  //       className="w-full"
-  //       onClick={hideModal}
-  //     >
-  //       {data.imageUrl?.map((item, index) => {
-  //         return (
-  //           <div
-  //             key={index}
-  //             onClick={hideModal}
-  //             className="each-slide-effect flex justify-center items-center h-screen"
-  //           >
-  //             <div
-  //               style={{
-  //                 width: "80%",
-  //                 height: "90vh",
-  //                 backgroundImage: `url('${item}')`,
-  //                 backgroundPosition: "center center",
-  //                 backgroundSize: "contain",
-  //                 backgroundRepeat: "no-repeat",
-  //               }}
-  //             ></div>
-  //           </div>
-  //         );
-  //       })}
-  //     </Slide>
-  //   </ReactModal>
-  // ));
+  // 彈窗的 arrow
+  const modalProperties = {
+    prevArrow: (
+      <button className="modalArrow">
+        <span className="material-icons text-[58px]">arrow_back_ios</span>
+      </button>
+    ),
+    nextArrow: (
+      <button className="modalArrow">
+        <span className="material-icons text-[58px]">arrow_forward_ios</span>
+      </button>
+    ),
+  };
 
-  return data.imageUrl ? (
+  // 輪播彈窗
+  const [showModal, hideModal] = useModal(() => (
+    <ReactModal
+      isOpen
+      appElement={document.getElementById("root")}
+      ariaHideApp={false}
+      className="px-[128px] h-screen"
+      style={{
+        overlay: {
+          backgroundColor: "rgba(0,0,0,0.7)",
+        },
+      }}
+      onRequestClose={hideModal}
+    >
+      <Slide
+        {...modalProperties}
+        autoplay={false}
+        infinite={false}
+        className="w-full"
+        onClick={hideModal}
+      >
+        {data.imageUrl?.map((item, index) => {
+          return (
+            <div
+              key={index}
+              onClick={hideModal}
+              className="each-slide-effect flex justify-center items-center h-screen"
+            >
+              <div
+                style={{
+                  width: "80%",
+                  height: "90vh",
+                  backgroundImage: `url('${item}')`,
+                  backgroundPosition: "center center",
+                  backgroundSize: "contain",
+                  backgroundRepeat: "no-repeat",
+                }}
+              ></div>
+            </div>
+          );
+        })}
+      </Slide>
+    </ReactModal>
+  ));
+
+  return (
     <div className="w-full h-full absolute cursor-pointer">
       <Slide {...properties} indicators={true}>
         {data.imageUrl.map((item, index) => {
@@ -90,14 +102,14 @@ function RoomCarousel({ data, toggleOpen }) {
                   backgroundRepeat: "no-repeat",
                   backgroundBlendMode: "multiply",
                 }}
-                onClick={toggleOpen}
+                onClick={showModal}
               ></div>
             </div>
           );
         })}
       </Slide>
     </div>
-  ) : null;
+  );
 }
 
 export default RoomCarousel;
