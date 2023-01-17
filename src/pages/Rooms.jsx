@@ -132,6 +132,10 @@ export function Rooms() {
     }
   };
 
+  // ? 平日假日計算金額
+  let price = calPrice();
+
+
   return (
     <div className="flex h-screen justify-between">
       {showFail}
@@ -159,7 +163,7 @@ export function Rooms() {
         {/* 價格＆預約按鈕 */}
         <div className=" flex flex-col relative mb-[13vh] items-center">
           <div className="mb-[10px]">
-            <span className="text-[36px] text-primary">$1,380 </span>
+            <span className="text-[36px] text-primary">{`$${price ? price.toLocaleString() : 0}`} </span>
             <span className="text-xl text-primary">{` / ${diffWithDay}晚`}</span>
           </div>
 
@@ -203,4 +207,22 @@ export function Rooms() {
       </div>
     </div>
   );
+
+  function calPrice() {
+    const weekAry = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    let index = weekAry.indexOf(String(state[0].startDate).slice(0, 3)); // Tue
+    let price = 0;
+    let weekCount = index;
+    for (let i = 0; i < diffWithDay; i++) {
+      // console.log(weekCount);
+      if (weekCount === 5 || weekCount === 6 || weekCount === 0) {
+        price += data.holidayPrice;
+      } else {
+        price += data.normalDayPrice;
+      }
+      weekCount += 1;
+      if (weekCount === 7) { weekCount = 0; }
+    }
+    return price;
+  }
 }
