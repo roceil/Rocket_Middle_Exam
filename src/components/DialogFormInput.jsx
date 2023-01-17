@@ -1,15 +1,15 @@
 import { BookingFormDate } from "./BookingFormDate";
 import { BookingForms } from "./BookingForms";
 
-export function DialogFormInput({ register, handleSubmit, setValue, errors }) {
+export function DialogFormInput({ register, handleSubmit, setValue, errors,sendData }) {
   const resetInput = () => {
     setValue("name", "");
     setValue("tel", "");
     console.log(`已重置`);
   };
   const onSubmit = (e) => {
-    // 這邊要做確認送出後的事情
-    resetInput();
+    sendData()
+    // resetInput();
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-4">
