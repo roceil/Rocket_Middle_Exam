@@ -16,11 +16,11 @@ import OK from "../images/amenities/icons-ok.svg";
 
 
 function RoomDetail({data}) {
-  console.log(data);
+  // console.log(data);
   let roomData = data;
-  console.log(roomData.amenities);
+  // console.log(roomData.amenities);
   Object.keys(data.amenities?data.amenities:{}).map((item)=>{
-    console.log(data.amenities[item]);
+    // console.log(data.amenities[item]);
   })
 
   // const roomItems = Object.keys(roomData.amenities)
@@ -30,7 +30,7 @@ function RoomDetail({data}) {
 
   // 房型 icons
   const iconsAry = [AC, BF, Child, View, Bar, Pet, Ref, Service, Smoke, Sofa, TV, WiFi]
-  console.log(1, '渲染中');
+  // console.log(1, '渲染中');
 
   // const [item, SetItem] = useState([]);
 
@@ -57,7 +57,7 @@ function RoomDetail({data}) {
   useEffect(() => {
     const CheckItems = async() =>{
       const haveAmenities = await roomData.amenities?.Breakfast;
-      console.log(haveAmenities?'遲到了':'失敗了');
+      // console.log(haveAmenities?'遲到了':'失敗了');
       // if (haveAmenities){
       //   return (
       //     <img

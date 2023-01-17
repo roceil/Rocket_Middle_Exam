@@ -1,12 +1,15 @@
 import DialogBgBlur from "./DialogBgBlur";
 import success from "../images/amenities/icon_booking_success.svg";
 import close from "../images/icons8-cancel-white.png";
-function BookingSuccess() {
+function BookingSuccess({ status }) {
   return (
-    <>
+    <div className={`fixed z-30 ${status}`}>
       <DialogBgBlur />
-      <div className="w-[1110px] h-[600px] bookingSuccess pt-[38.86px]">
-        <button type="button" className="w-full flex justify-end pr-[38.86px] closeBtnHover">
+      <div className="w-[1110px] h-[600px] bookingSuccess pt-[38.86px] ">
+        <button
+          type="button"
+          className="w-full flex justify-end pr-[38.86px] closeBtnHover"
+        >
           <img src={close} alt="" />
         </button>
         <div>
@@ -19,7 +22,7 @@ function BookingSuccess() {
           <br /> 若未收到簡訊請來電確認，謝謝您
         </p>
       </div>
-    </>
+    </div>
   );
 }
 
