@@ -78,13 +78,6 @@
     padding: 11px;
   }
 
-  .react-slideshow-container + ul.indicators .each-slideshow-indicator:before {
-    width: 12px;
-    height: 12px;
-    border: 1px solid #ffffff;
-    background: transparent;
-  }
-
   .react-slideshow-container + ul.indicators .each-slideshow-indicator:hover,
   .react-slideshow-container + ul.indicators .each-slideshow-indicator.active,
   .react-slideshow-container + ul.indicators .each-slideshow-indicator {
@@ -105,6 +98,13 @@
     background: #ffffff;
   }
 
+  .HomePage .react-slideshow-container + ul.indicators .each-slideshow-indicator:before {
+    width: 12px;
+    height: 12px;
+    border: 1px solid #ffffff;
+    background: transparent;
+  }
+
   /* roomCarousel indicator color */
   .RoomPage .react-slideshow-container + ul.indicators {
     position: absolute;
@@ -119,12 +119,36 @@
     background: #868f6c;
   }
 
+  .RoomPage .react-slideshow-container + ul.indicators .each-slideshow-indicator:before {
+    width: 12px;
+    height: 12px;
+    border: 1px solid #868f6c;
+    background: transparent;
+  }
+
   /* roomCarousel modal arrow color */
   .react-slideshow-container .modalArrow {
     color: rgb(255, 255, 255);
+    transition: all 0.5s ease-in;
+  }
+
+  .react-slideshow-container .modalArrow:hover{
+    transform:scale(1.5);
   }
 
   .react-slideshow-container .modalArrow:disabled {
     color: rgba(255, 255, 255, 0.2);
+  }
+
+  .react-slideshow-container .modalArrow:disabled:hover {
+    transform:scale(1);
+  }
+
+  /* roomCarousel line gradient */
+  .each-slide-effect .imgMask::after {
+    width: 100vw;
+    height: 100vh;
+    content: "";
+    background: transparent linear-gradient(180deg, hsla(0, 0%, 100%, 0), #fff);
   }
 }

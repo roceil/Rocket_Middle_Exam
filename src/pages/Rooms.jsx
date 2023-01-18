@@ -19,8 +19,19 @@ const authorization = { headers: { Authorization: token } };
 import { ModalProvider } from "react-modal-hook";
 import BookingSuccess from "../components/BookingSuccess";
 import BookingFail from "../components/BookingFail";
-import RoomModal from "../components/RoomModal";
 import { log } from "react-modal/lib/helpers/ariaAppHider";
+import AC from "../images/amenities/icon_amenities_Air-Conditioner.svg";
+import BF from "../images/amenities/icon_amenities_Breakfast.svg";
+import Child from "../images/amenities/icon_amenities_Child-Friendly.svg";
+import View from "../images/amenities/icon_amenities_Great-View.svg";
+import Bar from "../images/amenities/icon_amenities_Mini-Bar.svg";
+import Pet from "../images/amenities/icon_amenities_Pet-Friendly.svg";
+import Ref from "../images/amenities/icon_amenities_Refrigerator.svg";
+import Service from "../images/amenities/icon_amenities_Room-Service.svg";
+import Smoke from "../images/amenities/icon_amenities_Smoke-Free.svg";
+import Sofa from "../images/amenities/icon_amenities_Sofa.svg";
+import TV from "../images/amenities/icon_amenities_Television.svg";
+import WiFi from "../images/amenities/icon_amenities_Wi-Fi.svg";
 
 export function Rooms() {
   const { id } = useParams();
@@ -74,7 +85,6 @@ export function Rooms() {
     customerData.date = [getResult.checkInDate];
   }, [watchForm]);
 
-
   // 處理API POST
   const customerData = {
     name: "",
@@ -110,6 +120,62 @@ export function Rooms() {
   const closeBg = () => {
     setBgStatus(false);
   };
+
+
+  // 房型頁需用到的資訊
+  let roomData = data;
+  // 房型資訊斷句
+  let roomInfo = data.description?.split(/\.\s+/);
+  // 房型 icons
+  const iconsAry = [
+    AC,
+    BF,
+    Child,
+    View,
+    Bar,
+    Pet,
+    Ref,
+    Service,
+    Smoke,
+    Sofa,
+    TV,
+    WiFi,
+  ];
+  // icons 名稱
+  const iconsName = [
+    "空調",
+    "早餐",
+    "適合兒童",
+    "漂亮的視野",
+    "Mini Bar",
+    "攜帶寵物",
+    "冰箱",
+    "客房服務",
+    "全面禁菸",
+    "沙發",
+    "電話",
+    "WiFi",
+  ];
+  // icons true & false 值
+  const itemsAry = [];
+
+  // roomData.amenities 屬性轉陣列 -> 再將值生成新陣列 -> 用 index 跟 iconsAry 比對
+  Object.keys(data.amenities ? data.amenities : {}).map((item) => {
+    itemsAry.push(data.amenities[item]);
+  });
+
+  // API 英文資料轉中文
+  let bedType = "";
+  if (roomData.descriptionShort?.["Bed"][0] === "Small Double") {
+    bedType = "小張雙人床";
+  } else if (roomData.descriptionShort?.["Bed"][0] === "Double") {
+    bedType = "雙人床";
+  } else if (roomData.descriptionShort?.["Bed"][0] === "Single") {
+    bedType = "單人床";
+  } else if (roomData.descriptionShort?.["Bed"][0] === "Queen") {
+    bedType = "雙人床加大";
+  }
+
   let showBg =
     bgStatus === true ? (
       <Dialog
@@ -120,6 +186,12 @@ export function Rooms() {
         errors={errors}
         sendData={sendData}
         closeBg={closeBg}
+        roomData={roomData}
+        roomInfo={roomInfo}
+        iconsAry={iconsAry}
+        iconsName={iconsName}
+        itemsAry={itemsAry}
+        bedType={bedType}
       />
     ) : (
       ""
@@ -137,7 +209,7 @@ export function Rooms() {
   // ? 平日假日計算金額
   let price = calPrice();
 
-
+  
   return (
     <div className="RoomPage flex h-screen justify-between">
       {showFail}
@@ -147,7 +219,7 @@ export function Rooms() {
       <nav className="w-[42%] h-full flex flex-col justify-between fixed">
         {/* 輪播圖 */}
         <ModalProvider>
-          {data.imageUrl ? <RoomCarousel data={data}/> :null}          
+          {data.imageUrl ? <RoomCarousel data={data} /> : null}
         </ModalProvider>
         {/* 返回首頁按鈕 */}
         <button
@@ -165,7 +237,9 @@ export function Rooms() {
         {/* 價格＆預約按鈕 */}
         <div className=" flex flex-col relative mb-[13vh] items-center">
           <div className="mb-[10px]">
-            <span className="text-[36px] text-primary">{`$${price ? price.toLocaleString() : 0}`} </span>
+            <span className="text-[36px] text-primary">
+              {`$${price ? price.toLocaleString() : 0}`}{" "}
+            </span>
             <span className="text-xl text-primary">{` / ${diffWithDay}晚`}</span>
           </div>
 
@@ -183,7 +257,15 @@ export function Rooms() {
         <div className="w-[42%] mr-[30px] flex-shrink-0 "></div>
         {/* 房間細節 */}
         <div className=" mt-[13vh]  w-[635px] text-primary">
-          <RoomDetail data={data} />
+          <RoomDetail
+            data={data}
+            roomData={roomData}
+            roomInfo={roomInfo}
+            iconsAry={iconsAry}
+            iconsName={iconsName}
+            itemsAry={itemsAry}
+            bedType={bedType}
+          />
           <p className="text-primary text-sm font-medium mb-2 leading-6">
             空房狀態查詢
           </p>
@@ -191,8 +273,14 @@ export function Rooms() {
           <DateRangePicker
             onChange={(item) => {
               setState([item.selection]);
-              setValue("checkInDate", dayjs(item.selection.startDate).format("YYYY-MM-DD"));
-              setValue("checkOutDate",dayjs(item.selection.endDate).format("YYYY-MM-DD"));
+              setValue(
+                "checkInDate",
+                dayjs(item.selection.startDate).format("YYYY-MM-DD")
+              );
+              setValue(
+                "checkOutDate",
+                dayjs(item.selection.endDate).format("YYYY-MM-DD")
+              );
             }}
             showSelectionPreview={true}
             moveRangeOnFirstSelection={false}
@@ -211,7 +299,7 @@ export function Rooms() {
   );
 
   function calPrice() {
-    const weekAry = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const weekAry = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     let index = weekAry.indexOf(String(state[0].startDate).slice(0, 3)); // Tue
     let price = 0;
     let weekCount = index;
@@ -223,7 +311,9 @@ export function Rooms() {
         price += data.normalDayPrice;
       }
       weekCount += 1;
-      if (weekCount === 7) { weekCount = 0; }
+      if (weekCount === 7) {
+        weekCount = 0;
+      }
     }
     return price;
   }

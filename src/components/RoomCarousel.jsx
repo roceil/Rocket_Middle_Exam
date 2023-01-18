@@ -94,14 +94,12 @@ function RoomCarousel({ data, toggleOpen }) {
                 style={{
                   width: "100%",
                   height: "100vh",
-                  background:
-                    "transparent linear-gradient(180deg, #FFFFFF00 0%, #FFFFFF 100%) 0% 0% no-repeat padding-box",
                   backgroundImage: `url('${item}')`,
                   backgroundPosition: "center center",
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
-                  backgroundBlendMode: "multiply",
                 }}
+                className="imgMask"
                 onClick={showModal}
               ></div>
             </div>

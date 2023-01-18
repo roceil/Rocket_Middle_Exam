@@ -9,6 +9,12 @@ function Dialog({
   errors,
   sendData,
   closeBg,
+  roomData,
+  roomInfo,
+  iconsAry,
+  iconsName,
+  itemsAry,
+  bedType
 }) {
   return (
     <>
@@ -26,7 +32,15 @@ function Dialog({
         />
 
         {/* 右邊資訊區塊 */}
-        <DialogRoomDetail setBgStatus={setBgStatus} />
+        <DialogRoomDetail
+          setBgStatus={setBgStatus}
+          roomData={roomData}
+          roomInfo={roomInfo}
+          iconsAry={iconsAry}
+          iconsName={iconsName}
+          itemsAry={itemsAry}
+          bedType={bedType}
+        />
       </div>
     </>
   );
