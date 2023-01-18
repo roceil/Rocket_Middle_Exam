@@ -32,8 +32,8 @@ export function Rooms() {
       const res = await axios.get(`${url}/${id}`, authorization);
       const booking = await res.data.booking;
       booking.map((item) => {
-        setDisabledDays(prev=>{
-          return [...prev,new Date(item.date)]
+        setDisabledDays(prev => {
+          return [...prev, new Date(item.date)]
         });
       });
       setData(res.data.room[0]);
@@ -41,21 +41,21 @@ export function Rooms() {
   }, []);
 
   const initCalendar = {
-      startDate: addDays(new Date(), 1),
-      endDate: addDays(new Date(), 2),
-      key: "selection",
-    }
-    const resetCalendar = ()=>{
-      setState([initCalendar]);
-      setValue(
-        "checkInDate",
-        dayjs(initCalendar.startDate).format("YYYY-MM-DD")
-      );
-      setValue(
-        "checkOutDate",
-        dayjs(initCalendar.endDate).format("YYYY-MM-DD")
-      );
-    }
+    startDate: addDays(new Date(), 1),
+    endDate: addDays(new Date(), 2),
+    key: "selection",
+  }
+  const resetCalendar = () => {
+    setState([initCalendar]);
+    setValue(
+      "checkInDate",
+      dayjs(initCalendar.startDate).format("YYYY-MM-DD")
+    );
+    setValue(
+      "checkOutDate",
+      dayjs(initCalendar.endDate).format("YYYY-MM-DD")
+    );
+  }
   const [state, setState] = useState([
     initCalendar,
   ]);
@@ -92,6 +92,13 @@ export function Rooms() {
     customerData.tel = getResult.tel;
     customerData.date = [getResult.checkInDate];
   }, [watchForm]);
+  // ? 平日假日計算金額
+  const price = calPrice(state[0].startDate, diffWithDay);
+  // ? Dialog計算金額
+  const DialogStartDate = dayjs(getValues().checkInDate).$d;
+  const DialogDiffDay = dayjs(getValues().checkOutDate).diff(dayjs(getValues().checkInDate), "day");
+  const DialogPrice = calPrice(DialogStartDate, DialogDiffDay);
+  const DialogDate = calDate(DialogStartDate, DialogDiffDay)
 
   // 處理API POST
   const customerData = {
@@ -104,7 +111,7 @@ export function Rooms() {
       const res = await axios.post(`${url}/${id}`, customerData, authorization);
       setBgStatus(false);
       setSuccess(true);
-      setDisabledDays(prev=>{
+      setDisabledDays(prev => {
         return [...prev, new Date(customerData.date)]
       })
       console.log(res.data);
@@ -141,6 +148,7 @@ export function Rooms() {
         errors={errors}
         sendData={sendData}
         closeBg={closeBg}
+        DialogCheckingInfo={{ DialogPrice, DialogDate }}
       />
     ) : (
       ""
@@ -169,9 +177,6 @@ export function Rooms() {
   //       break;
   //   }
   // };
-  // ? 平日假日計算金額
-  let price = calPrice();
-
   return (
     <div className="RoomPage flex h-screen justify-between ">
       {showFail}
@@ -228,14 +233,8 @@ export function Rooms() {
           <DateRangePicker
             onChange={(item) => {
               setState([item.selection]);
-              setValue(
-                "checkInDate",
-                dayjs(item.selection.startDate).format("YYYY-MM-DD")
-              );
-              setValue(
-                "checkOutDate",
-                dayjs(item.selection.endDate).format("YYYY-MM-DD")
-              );
+              setValue("checkInDate", dayjs(item.selection.startDate).format("YYYY-MM-DD"));
+              setValue("checkOutDate", dayjs(item.selection.endDate).format("YYYY-MM-DD"));
             }}
             showSelectionPreview={true}
             moveRangeOnFirstSelection={false}
@@ -256,23 +255,41 @@ export function Rooms() {
     </div>
   );
 
-  function calPrice() {
-    const weekAry = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    let index = weekAry.indexOf(String(state[0].startDate).slice(0, 3)); // Tue
+  function calPrice(startDate, totalDay) {
+    const weekAry = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    let index = weekAry.indexOf(String(startDate).slice(0, 3)); // Tue
     let price = 0;
     let weekCount = index;
-    for (let i = 0; i < diffWithDay; i++) {
-      // console.log(weekCount);
+    for (let i = 0; i < totalDay; i++) {
       if (weekCount === 5 || weekCount === 6 || weekCount === 0) {
         price += data.holidayPrice;
       } else {
         price += data.normalDayPrice;
       }
       weekCount += 1;
-      if (weekCount === 7) {
-        weekCount = 0;
-      }
+      if (weekCount === 7) weekCount = 0;
     }
     return price;
+  }
+  function calDate(startDate, totalDay) {
+    const weekAry = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    let index = weekAry.indexOf(String(startDate).slice(0, 3)); // Tue
+    let weekCount = index;
+    let normalDayCount = 0;
+    let holidayCount = 0;
+    for (let i = 0; i < totalDay; i++) {
+      if (weekCount === 5 || weekCount === 6 || weekCount === 0) {
+        holidayCount += 1
+      } else {
+        normalDayCount += 1
+      }
+      weekCount += 1;
+      if (weekCount === 7) weekCount = 0;
+    }
+    return {
+      totalDay: totalDay + 1,
+      normalDayCount: normalDayCount,
+      holidayCount: holidayCount
+    }
   }
 }
