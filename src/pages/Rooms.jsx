@@ -10,6 +10,7 @@ import backHome from "../images/back home.png";
 import RoomCarousel from "../components/RoomCarousel";
 import RoomDetail from "../container/RoomDetail";
 import Dialog from "../container/Dialog";
+import { Loading } from "../components/Loading";
 import { NavLink, useParams } from "react-router-dom";
 import axios from "axios";
 const url = "https://challenge.thef2e.com/api/thef2e2019/stage6/room";
@@ -150,7 +151,9 @@ export function Rooms() {
   // ? 平日假日計算金額
   let price = calPrice();
   return (
-    <div className="RoomPage flex h-screen justify-between">
+    <>
+    {data.length===0 ? <Loading text='傳 送 中  (⁎⁍̴̛ᴗ⁍̴̛⁎) '/> :null}
+    <div className="animate-fadeIn RoomPage flex h-screen justify-between relative -z-10">
       {showFail}
       {showSuccess}
       {showBg}
@@ -162,18 +165,18 @@ export function Rooms() {
           <RoomCarousel data={data} toggleOpen={toggleOpen}/>
         </ModalProvider>
         {/* 返回首頁按鈕 */}
+        <NavLink
+          to="/"
+          className="font-light text-sm 2xl:text-base 3xl:text-lg text-primary"
+        >
         <button
           type="button"
-          className="flex items-center relative mt-[87px] pl-[13vh]"
+          className="flex items-center relative mt-[87px] ml-[13vh]"
         >
           <img src={backHome} alt="backHome" className="m-[10px] " />
-          <NavLink
-            to="/"
-            className="font-light text-sm 2xl:text-base 3xl:text-lg text-primary"
-          >
             查看其他房型
-          </NavLink>
         </button>
+          </NavLink>
         {/* 價格＆預約按鈕 */}
         <div className=" flex flex-col relative mb-[13vh] items-center">
           <div className="mb-[10px]">
@@ -220,6 +223,7 @@ export function Rooms() {
         </div>
       </div>
     </div>
+    </>
   );
 
   function calPrice() {

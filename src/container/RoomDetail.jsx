@@ -13,7 +13,7 @@ import TV from "../images/amenities/icon_amenities_Television.svg";
 import WiFi from "../images/amenities/icon_amenities_Wi-Fi.svg";
 import Cancel from "../images/amenities/icons-Cancel.svg";
 import OK from "../images/amenities/icons-ok.svg";
-import { Loading } from "../pages/Loading";
+import { Loading } from "../components/Loading";
 
 
 function RoomDetail({data}) {
@@ -64,10 +64,6 @@ function RoomDetail({data}) {
 
   return (
     <>
-    {data.length===0 ?
-    <h1 className="bg-light-primary text-white">像家一樣・溫暖自在</h1>
-    :null}
-
       <p className="w-full mb-12 text-right mb-[47px]leading-6">
       {roomData.descriptionShort?.['GuestMax']}人
       ・ {bedType} {roomData.descriptionShort?.['Bed'].length}張
