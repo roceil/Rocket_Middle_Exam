@@ -24,22 +24,42 @@ import RoomModal from "../components/RoomModal";
 export function Rooms() {
   const { id } = useParams();
   const [data, setData] = useState([]);
+  const [disabledDays, setDisabledDays] = useState([]);
 
+  // 取得單一房間資料API
   useEffect(() => {
-    const getRoomInfo = async () => {
+    (async () => {
       const res = await axios.get(`${url}/${id}`, authorization);
+      const booking = await res.data.booking;
+      booking.map((item) => {
+        setDisabledDays(prev=>{
+          return [...prev,new Date(item.date)]
+        });
+      });
       setData(res.data.room[0]);
-    };
-    getRoomInfo();
+    })();
   }, []);
 
-  const [state, setState] = useState([
-    {
+  const initCalendar = {
       startDate: addDays(new Date(), 1),
       endDate: addDays(new Date(), 2),
       key: "selection",
-    },
+    }
+    const resetCalendar = ()=>{
+      setState([initCalendar]);
+      setValue(
+        "checkInDate",
+        dayjs(initCalendar.startDate).format("YYYY-MM-DD")
+      );
+      setValue(
+        "checkOutDate",
+        dayjs(initCalendar.endDate).format("YYYY-MM-DD")
+      );
+    }
+  const [state, setState] = useState([
+    initCalendar,
   ]);
+
 
   // 處理日期套件
 
@@ -48,7 +68,7 @@ export function Rooms() {
   let checkOutDate = dayjs(state[0].endDate).format("YYYY-MM-DD");
   // 用來算天數
   const diffWithDay = dayjs(checkOutDate).diff(dayjs(checkInDate), "day");
-
+  console.log();
   const {
     register,
     handleSubmit,
@@ -73,7 +93,6 @@ export function Rooms() {
     customerData.date = [getResult.checkInDate];
   }, [watchForm]);
 
-
   // 處理API POST
   const customerData = {
     name: "",
@@ -85,6 +104,9 @@ export function Rooms() {
       const res = await axios.post(`${url}/${id}`, customerData, authorization);
       setBgStatus(false);
       setSuccess(true);
+      setDisabledDays(prev=>{
+        return [...prev, new Date(customerData.date)]
+      })
       console.log(res.data);
     } catch (error) {
       setBgStatus(false);
@@ -149,8 +171,9 @@ export function Rooms() {
   // };
   // ? 平日假日計算金額
   let price = calPrice();
+
   return (
-    <div className="RoomPage flex h-screen justify-between">
+    <div className="RoomPage flex h-screen justify-between ">
       {showFail}
       {showSuccess}
       {showBg}
@@ -159,7 +182,7 @@ export function Rooms() {
       <nav className="w-[42%] h-full flex flex-col justify-between fixed">
         {/* 輪播圖 */}
         <ModalProvider>
-          <RoomCarousel data={data} toggleOpen={toggleOpen}/>
+          <RoomCarousel data={data} toggleOpen={toggleOpen} />
         </ModalProvider>
         {/* 返回首頁按鈕 */}
         <button
@@ -177,7 +200,9 @@ export function Rooms() {
         {/* 價格＆預約按鈕 */}
         <div className=" flex flex-col relative mb-[13vh] items-center">
           <div className="mb-[10px]">
-            <span className="text-[36px] text-primary">{`$${price ? price.toLocaleString() : 0}`} </span>
+            <span className="text-[36px] text-primary">
+              {`$${price ? price.toLocaleString() : 0}`}{" "}
+            </span>
             <span className="text-xl text-primary">{` / ${diffWithDay}晚`}</span>
           </div>
 
@@ -203,8 +228,14 @@ export function Rooms() {
           <DateRangePicker
             onChange={(item) => {
               setState([item.selection]);
-              setValue("checkInDate", dayjs(item.selection.startDate).format("YYYY-MM-DD"));
-              setValue("checkOutDate",dayjs(item.selection.endDate).format("YYYY-MM-DD"));
+              setValue(
+                "checkInDate",
+                dayjs(item.selection.startDate).format("YYYY-MM-DD")
+              );
+              setValue(
+                "checkOutDate",
+                dayjs(item.selection.endDate).format("YYYY-MM-DD")
+              );
             }}
             showSelectionPreview={true}
             moveRangeOnFirstSelection={false}
@@ -216,14 +247,17 @@ export function Rooms() {
             maxDate={dayjs(state.startDate).add(90, "day").toDate()}
             color="rgb(56, 71, 11)"
             date={new Date(state.endDate)}
+            disabledDates={disabledDays}
           />
+          <button className="text-sm mt-[6px] text-light-primary hover:text-primary hover:duration-300 mb-8" onClick={resetCalendar}
+          >重新選擇</button>
         </div>
       </div>
     </div>
   );
 
   function calPrice() {
-    const weekAry = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const weekAry = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     let index = weekAry.indexOf(String(state[0].startDate).slice(0, 3)); // Tue
     let price = 0;
     let weekCount = index;
@@ -235,7 +269,9 @@ export function Rooms() {
         price += data.normalDayPrice;
       }
       weekCount += 1;
-      if (weekCount === 7) { weekCount = 0; }
+      if (weekCount === 7) {
+        weekCount = 0;
+      }
     }
     return price;
   }

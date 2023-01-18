@@ -75,7 +75,7 @@ function RoomCarousel({ data, toggleOpen }) {
     <div className="w-full h-full absolute cursor-pointer">
       <Slide {...properties} indicators={true}>
         {data.imageUrl.map((item, index) => {
-          console.log(item);
+          // console.log(item);
           return (
             <div className="each-slide-effect" key={index}>
               <div
