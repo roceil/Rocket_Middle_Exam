@@ -26,6 +26,26 @@ module.exports = {
         'primary': '#38470B',
         "light-primary": "#949C7C"
       },
+      keyframes: {
+        flash: {
+          '0%': { opacity: '0.2' },
+          '20%': { opacity: '1' },
+          '100%': { opacity: '0.2' },
+        },
+        fadeOut: {
+          '100%': { opacity: '0' },
+          '0%': { opacity: '1' },
+        },
+        fadeIn: {
+          '60%': { opacity: '0.4' },
+          '100%': { opacity: '1' },
+        },
+      },
+      animation: {
+        flash: 'flash 1.4s infinite linear',
+        fadeOut: 'fadeOut 2s linear',
+        fadeIn: 'fadeIn 1s linear',
+      },
     },
   },
   plugins: [],

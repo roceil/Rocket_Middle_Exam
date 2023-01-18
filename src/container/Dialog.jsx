@@ -14,7 +14,8 @@ function Dialog({
   iconsAry,
   iconsName,
   itemsAry,
-  bedType
+  bedType,
+  DialogCheckingInfo,
 }) {
   return (
     <>
@@ -29,6 +30,7 @@ function Dialog({
           setValue={setValue}
           errors={errors}
           sendData={sendData}
+          DialogCheckingInfo={DialogCheckingInfo}
         />
 
         {/* 右邊資訊區塊 */}

@@ -1,6 +1,5 @@
 import { Home } from "./pages/Home";
 import { Rooms } from "./pages/Rooms";
-import { Loading } from "./pages/Loading";
 import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from 'axios';
