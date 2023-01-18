@@ -14,7 +14,7 @@
 /* 調整按鈕位置 */
 .rdrMonthAndYearWrapper {
   position: relative;
-  top: 42px;
+  top: 56px;
 }
 
 /* 調整按鈕顏色 */
@@ -47,4 +47,10 @@
 .rdrDayInPreview,.rdrDayStartPreview,.rdrDayEndPreview{
   border-color:#38470b;
   /* display: none; */
+}
+
+/* 日曆外框 */
+.rdrMonths{
+  border:1px solid #38470b;
+  padding-top: 12px;
 }
