@@ -9,6 +9,7 @@ function Dialog({
   errors,
   sendData,
   closeBg,
+  DialogCheckingInfo,
 }) {
   return (
     <>
@@ -23,6 +24,7 @@ function Dialog({
           setValue={setValue}
           errors={errors}
           sendData={sendData}
+          DialogCheckingInfo={DialogCheckingInfo}
         />
 
         {/* 右邊資訊區塊 */}
