@@ -1,4 +1,4 @@
-export function DialogRoomBookingInfo() {
+export function DialogRoomBookingInfo({ roomData }) {
   return (
     <div className="mb-3">
       {/* 副標題區塊 */}
@@ -9,7 +9,9 @@ export function DialogRoomBookingInfo() {
       {/* 資訊清單 */}
       <ul className="mt-2 text-xs text-primary leading-[2.16666] font">
         <li>
-          ・入住時間：最早15：00，最晚21：00；退房時間：10：00，請自行確認行程安排。{" "}
+          ・入住時間：最早{roomData.checkInAndOut.checkInEarly}
+          ，最晚{roomData.checkInAndOut.checkInLate}；退房時間：
+          {roomData.checkInAndOut.checkOut}，請自行確認行程安排。{" "}
         </li>
         <li>・平日定義週一至週四；假日定義週五至週日及國定假日。</li>
         <li>・好室旅店全面禁止吸菸。</li>

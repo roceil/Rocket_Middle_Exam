@@ -1,49 +1,35 @@
-import breakfast from "../images/amenities/icon_amenities_Breakfast.svg";
-import wifi from "../images/amenities/icon_amenities_Wi-Fi.svg";
-import tel from "../images/amenities/icon_amenities_Television.svg";
-import refrigerator from "../images/amenities/icon_amenities_Refrigerator.svg";
-import pet from "../images/amenities/icon_amenities_Pet-Friendly.svg";
-import smoke from "../images/amenities/icon_amenities_Smoke-Free.svg";
-import ac from "../images/amenities/icon_amenities_Air-Conditioner.svg";
-
-export function DialogRoomIcons() {
+export function DialogRoomIcons({ iconsAry, iconsName, itemsAry }) {
   return (
-    <ul className="flex text-light-primary space-x-[30px] mb-[26px]">
-      {/* 早餐 */}
-      <li className="flex flex-col justify-center items-center space-y-2">
-        <img className="max-h-[30px]" src={breakfast} alt="breakfast" />
-        <p className="text-[10px]">早餐</p>
-      </li>
-      {/* wifi */}
-      <li className="flex flex-col justify-center items-center space-y-2">
-        <img className="max-h-[30px]" src={wifi} alt="wifi" />
-        <p className="text-[10px]">Wifi</p>
-      </li>
-      {/* 電話 */}
-      <li className="flex flex-col justify-center items-center space-y-2">
-        <img className="max-h-[30px]" src={tel} alt="tel" />
-        <p className="text-[10px]">電話</p>
-      </li>
-      {/* 冰箱 */}
-      <li className="flex flex-col justify-center items-center space-y-2">
-        <img className="max-h-[30px]" src={refrigerator} alt="refrigerator" />
-        <p className="text-[10px]">冰箱</p>
-      </li>
-      {/* 攜帶寵物 */}
-      <li className="flex flex-col justify-center items-center space-y-2">
-        <img className="max-h-[30px]" src={pet} alt="pet" />
-        <p className="text-[10px]">攜帶寵物</p>
-      </li>
-      {/* 全面禁煙 */}
-      <li className="flex flex-col justify-center items-center space-y-2">
-        <img className="max-h-[30px]" src={smoke} alt="smoke" />
-        <p className="text-[10px]">全面禁煙</p>
-      </li>
-      {/* 空調 */}
-      <li className="flex flex-col justify-center items-center space-y-2">
-        <img className="max-h-[30px]" src={ac} alt="ac" />
-        <p className="text-[10px]">空調</p>
-      </li>
+    <ul className="flex flex-wrap gap-x-[30px]">
+      {iconsAry.map((item, i) => {
+        return (
+          <li
+            key={i}
+            className={`flex mb-[26px] ${itemsAry[i] ? null : "hidden"}`}
+          >
+            <div className="flex flex-col space-y-2 items-center">
+              <img
+                src={item}
+                alt=""
+                className={
+                  itemsAry[i]
+                    ? "w-[30px] h-[30px] "
+                    : "opacity-30 w-10 h-10 hidden"
+                }
+              />
+              <p
+                className={
+                  itemsAry[i]
+                    ? "text-[10px] mt-2 text-center text-light-primary"
+                    : "opacity-30 text-[10px] mt-2 text-center hidden"
+                }
+              >
+                {iconsName[i]}
+              </p>
+            </div>
+          </li>
+        );
+      })}
     </ul>
   );
 }

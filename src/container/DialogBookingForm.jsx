@@ -6,8 +6,8 @@ export function DialogBookingForm({
   handleSubmit,
   setValue,
   errors,
-  control,
-  getValues,
+  sendData,
+  DialogCheckingInfo,
 }) {
   return (
     <div className="w-[40.090%] bg-primary  flex items-center flex-col pt-[50px] pb-[26px]">
@@ -17,6 +17,8 @@ export function DialogBookingForm({
         handleSubmit={handleSubmit}
         setValue={setValue}
         errors={errors}
+        sendData={sendData}
+        DialogCheckingInfo={DialogCheckingInfo}
       />
       <p className="text-white text-xs mt-[18px]">
         此預約系統僅預約功能，並不會對您進行收費

@@ -1,0 +1,56 @@
+/* 關閉日曆不用的區塊 */
+.rdrDefinedRangesWrapper,
+.rdrDateDisplayWrapper,
+.rdrMonthAndYearPickers {
+  display: none;
+}
+
+/* 月份名稱置中 */
+.rdrMonthName {
+  text-align: center;
+  color: #38470b;
+}
+
+/* 調整按鈕位置 */
+.rdrMonthAndYearWrapper {
+  position: relative;
+  top: 56px;
+}
+
+/* 調整按鈕顏色 */
+.rdrPprevButton i {
+  border-color: transparent rgb(56, 71, 11) transparent transparent;
+}
+
+/* 無法預定的日期加上線 */
+.rdrDayDisabled span{
+  text-decoration: line-through;
+}
+
+/* 起使日背景顏色 */
+.rdrStartEdge{
+  background-color: #38470b;
+}
+
+/* 日期區間背景顏色 */
+.rdrInRange{
+  background-color: #38470b;
+  opacity: 0.2;
+}
+
+/* 結束日背景顏色 */
+.rdrEndEdge{
+  background-color: #949C7C;
+}
+
+/* 選取時外框顏色 */
+.rdrDayInPreview,.rdrDayStartPreview,.rdrDayEndPreview{
+  border-color:#38470b;
+  /* display: none; */
+}
+
+/* 日曆外框 */
+.rdrMonths{
+  border:1px solid #38470b;
+  padding-top: 12px;
+}
