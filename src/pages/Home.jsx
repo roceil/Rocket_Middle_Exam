@@ -1,12 +1,13 @@
 import logo from "../images/logo.svg";
-import singleRoom from "../images/room1/singleRoom.jpeg";
 import HomeCarousel from "../components/HomeCarousel";
-// import { RoomList } from "../container/RoomList";
 import RoomList from "../container/RoomList"
+import { Loading } from "../components/Loading";
 
-export function Home() {
+export function Home({data}) {
   return (
-    <div className="HomePage flex items-center h-screen">
+    <>
+    {data.length===0 ? <Loading text='火箭隊 11 梯 - 前端組。良心製作'/> :null}
+    <div className="HomePage flex items-center h-screen relative -z-10">
       {/* SwipeCarousel */}
       <HomeCarousel />
       {/* Content */}
@@ -25,9 +26,10 @@ export function Home() {
             </div>
           </div>
           {/* 右邊房型區塊 */}
-          <RoomList />
+          <RoomList data={data}/>
         </div>
       </div>
     </div>
+    </>
   );
 }

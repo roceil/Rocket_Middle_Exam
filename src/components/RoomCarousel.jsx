@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 import singleRoom from "../images/room1/singleRoom.jpeg";
@@ -7,9 +7,13 @@ import singleRoom3 from "../images/room1/singleRoom3.jpeg";
 import ReactModal from "react-modal";
 import { useModal } from "react-modal-hook";
 
-const RoomCarousel = () => {
-  // 輪播圖片
-  const images = [singleRoom, singleRoom2, singleRoom3];
+function RoomCarousel({ data, toggleOpen }) {
+  // 輪播圖片(本地)
+  // const images = [singleRoom, singleRoom2, singleRoom3];
+
+  // 輪播圖片(接 API)
+  // console.log(data);
+  // console.log(data.imageUrl);
 
   // 取消輪播 prev & next button
   const buttonStyle = {
@@ -20,30 +24,15 @@ const RoomCarousel = () => {
     nextArrow: <button style={{ ...buttonStyle }}></button>,
   };
 
-  const modalButtonStyle = {
-    color: "#ffffff",
-    outline: "none",
-    border: "none",
-  };
-
-  // 設定 modal prev & next button
-  let opacityFirst = "";
-  images.map((item, index) => {
-    // console.log(index,item)
-    opacityFirst =
-      index === 0
-        ? (modalButtonStyle.opacity = "0.2")
-        : (modalButtonStyle.opacity = "1");
-  });
-
+  // 彈窗的 arrow
   const modalProperties = {
     prevArrow: (
-      <button style={{ ...modalButtonStyle, opacity: "0.2" }}>
+      <button className="modalArrow">
         <span className="material-icons text-[58px]">arrow_back_ios</span>
       </button>
     ),
     nextArrow: (
-      <button style={{ ...modalButtonStyle }}>
+      <button className="modalArrow">
         <span className="material-icons text-[58px]">arrow_forward_ios</span>
       </button>
     ),
@@ -53,6 +42,8 @@ const RoomCarousel = () => {
   const [showModal, hideModal] = useModal(() => (
     <ReactModal
       isOpen
+      appElement={document.getElementById("root")}
+      ariaHideApp={false}
       className="px-[128px] h-screen"
       style={{
         overlay: {
@@ -67,10 +58,8 @@ const RoomCarousel = () => {
         infinite={false}
         className="w-full"
         onClick={hideModal}
-        onChange={(e) => console.log(e)}
-      // firstSlideProps={{ prevArrow: { opacity: "0.2" } }}
       >
-        {images.map((item, index) => {
+        {data.imageUrl?.map((item, index) => {
           return (
             <div
               key={index}
@@ -81,7 +70,7 @@ const RoomCarousel = () => {
                 style={{
                   width: "80%",
                   height: "90vh",
-                  backgroundImage: `url(${item})`,
+                  backgroundImage: `url('${item}')`,
                   backgroundPosition: "center center",
                   backgroundSize: "contain",
                   backgroundRepeat: "no-repeat",
@@ -97,21 +86,20 @@ const RoomCarousel = () => {
   return (
     <div className="w-full h-full absolute cursor-pointer">
       <Slide {...properties} indicators={true}>
-        {images.map((item, index) => {
+        {data.imageUrl.map((item, index) => {
+          // console.log(item);
           return (
             <div className="each-slide-effect" key={index}>
               <div
                 style={{
                   width: "100%",
                   height: "100vh",
-                  background:
-                    "transparent linear-gradient(180deg, #FFFFFF00 0%, #FFFFFF 100%) 0% 0% no-repeat padding-box",
-                  backgroundImage: `url(${item})`,
+                  backgroundImage: `url('${item}')`,
                   backgroundPosition: "center center",
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
-                  backgroundBlendMode: "multiply",
                 }}
+                className="imgMask"
                 onClick={showModal}
               ></div>
             </div>
@@ -120,6 +108,6 @@ const RoomCarousel = () => {
       </Slide>
     </div>
   );
-};
+}
 
 export default RoomCarousel;

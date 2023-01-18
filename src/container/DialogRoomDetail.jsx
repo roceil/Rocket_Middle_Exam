@@ -5,7 +5,15 @@ import { DialogRoomIcons } from "../components/DialogRoomIcons";
 import { DialogRoomBookingInfo } from "./DialogRoomBookingInfo";
 import { DialogBookingStep } from "../components/DialogBookingStep";
 
-export function DialogRoomDetail({ setBgStatus }) {
+export function DialogRoomDetail({
+  setBgStatus,
+  roomData,
+  roomInfo,
+  iconsAry,
+  iconsName,
+  itemsAry,
+  bedType
+}) {
   const closeBg = () => {
     setBgStatus(false);
   };
@@ -21,16 +29,23 @@ export function DialogRoomDetail({ setBgStatus }) {
       </button>
 
       {/* 標題區塊 */}
-      <DialogRoomTitle />
+      <DialogRoomTitle roomData={roomData} />
 
       {/* 房型資訊 */}
-      <DialogRoomInfo />
+      <DialogRoomInfo roomData={roomData}  bedType={bedType}/>
 
       {/* 房型icons */}
-      <DialogRoomIcons />
+      <DialogRoomIcons
+        roomData={roomData}
+        roomInfo={roomInfo}
+        iconsAry={iconsAry}
+        iconsName={iconsName}
+        itemsAry={itemsAry}
+        bedType={bedType}
+      />
 
       {/* 訂房資訊 */}
-      <DialogRoomBookingInfo />
+      <DialogRoomBookingInfo roomData={roomData} />
 
       {/* 預約流程 */}
       <DialogBookingStep />

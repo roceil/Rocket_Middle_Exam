@@ -30,10 +30,10 @@
     @apply absolute w-[533px] h-[1px] bg-light-primary opacity-20 top-1/2 left-0 translate-y-[50%];
   }
   .bookingSuccess {
-    @apply bg-primary fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] z-10  flex flex-col space-y-[41px] items-center text-center text-white;
+    @apply bg-primary fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] z-20  flex flex-col space-y-[41px] items-center text-center text-white;
   }
-  .closeBtnHover{
-    @apply hover:opacity-50 hover:duration-300
+  .closeBtnHover {
+    @apply hover:opacity-50 hover:duration-300;
   }
 }
 
@@ -78,13 +78,6 @@
     padding: 11px;
   }
 
-  .react-slideshow-container + ul.indicators .each-slideshow-indicator:before {
-    width: 12px;
-    height: 12px;
-    border: 1px solid #ffffff;
-    background: transparent;
-  }
-
   .react-slideshow-container + ul.indicators .each-slideshow-indicator:hover,
   .react-slideshow-container + ul.indicators .each-slideshow-indicator.active,
   .react-slideshow-container + ul.indicators .each-slideshow-indicator {
@@ -95,7 +88,7 @@
   .HomePage .react-slideshow-container + ul.indicators {
     position: absolute;
     bottom: 46px;
-    left: 150px;
+    left: 22%;
   }
 
   .HomePage
@@ -105,11 +98,18 @@
     background: #ffffff;
   }
 
+  .HomePage .react-slideshow-container + ul.indicators .each-slideshow-indicator:before {
+    width: 12px;
+    height: 12px;
+    border: 1px solid #ffffff;
+    background: transparent;
+  }
+
   /* roomCarousel indicator color */
   .RoomPage .react-slideshow-container + ul.indicators {
     position: absolute;
     bottom: 46px;
-    left: 260px;
+    left: 46%;
   }
 
   .RoomPage
@@ -119,5 +119,36 @@
     background: #868f6c;
   }
 
+  .RoomPage .react-slideshow-container + ul.indicators .each-slideshow-indicator:before {
+    width: 12px;
+    height: 12px;
+    border: 1px solid #868f6c;
+    background: transparent;
+  }
 
+  /* roomCarousel modal arrow color */
+  .react-slideshow-container .modalArrow {
+    color: rgb(255, 255, 255);
+    transition: all 0.5s ease-in;
+  }
+
+  .react-slideshow-container .modalArrow:hover{
+    transform:scale(1.5);
+  }
+
+  .react-slideshow-container .modalArrow:disabled {
+    color: rgba(255, 255, 255, 0.2);
+  }
+
+  .react-slideshow-container .modalArrow:disabled:hover {
+    transform:scale(1);
+  }
+
+  /* roomCarousel line gradient */
+  .each-slide-effect .imgMask::after {
+    width: 100vw;
+    height: 100vh;
+    content: "";
+    background: transparent linear-gradient(180deg, hsla(0, 0%, 100%, 0), #fff);
+  }
 }
