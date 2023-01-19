@@ -37,7 +37,7 @@ function RoomDetail({
       {/* description（待處理：轉中文） */}
       <ul className="text-primary text-sm font-light mb-12 leading-6">
         {roomInfo?.map((item, index) => (
-          <li key={index}>・{item}</li>
+          <li className="list-disc ml-4" key={index}>{item}</li>
         ))}
       </ul>
       {/* icons */}
